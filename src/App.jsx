@@ -11,6 +11,7 @@ import PatientDashboard from "./Pages/PatientDashboard.jsx";
 import DonorDashboard from "./Pages/DonorDashboard.jsx";
 import AdminDashboard from "./Pages/AdminDashboard.jsx";
 import Profile from "./Pages/Profile.jsx";
+import DonationRequest from "./Pages/DonationRequest.jsx";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
 
         <Route path="/profile" element={<Profile />} />
+        <Route path="/donation-request" element={<DonationRequest />}/>
       </Routes>
     </BrowserRouter>
   );
