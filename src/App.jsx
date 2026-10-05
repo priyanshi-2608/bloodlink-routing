@@ -10,6 +10,7 @@ import Register from "./Pages/Register";
 import PatientDashboard from "./Pages/PatientDashboard.jsx";
 import DonorDashboard from "./Pages/DonorDashboard.jsx";
 import AdminDashboard from "./Pages/AdminDashboard.jsx";
+import Profile from "./Pages/Profile.jsx";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
         <Route path="/donor" element={<DonorDashboard />} />
 
         <Route path="/admin" element={<AdminDashboard />} />
+
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
