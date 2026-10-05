@@ -4,6 +4,7 @@ import WelcomeSection from "../components/admin/WelcomeSection";
 import DashboardStats from "../components/admin/DashboardStats";
 import UserManagement from "../components/admin/UserManagement";
 import RecentRequest from "../components/admin/RecentRequest";
+import BloodStock from "../components/admin/BloodStock";
 
 function AdminDashboard() {
   return (
@@ -15,6 +16,7 @@ function AdminDashboard() {
         <DashboardStats />
         <UserManagement />
         <RecentRequest />
+        <BloodStock />
       </main>
     </>
   );
