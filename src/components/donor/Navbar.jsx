@@ -28,8 +28,8 @@ function Navbar() {
             </li>
 
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Blood Requests
+              <a className="nav-link" href="/donor-blood-scheduling">
+                Blood Scheduling
               </a>
             </li>
 

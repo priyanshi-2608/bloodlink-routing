@@ -13,6 +13,7 @@ import AdminDashboard from "./Pages/AdminDashboard.jsx";
 import Profile from "./Pages/Profile.jsx";
 import DonationRequest from "./Pages/DonationRequest.jsx";
 import PatientBloodRequest from "./Pages/PatientBloodRequest.jsx";
+import DonorBloodScheduling from "./Pages/DonorBloodScheduling.jsx";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/donation-request" element={<DonationRequest />}/>
         <Route path="/patient-blood-request" element={<PatientBloodRequest/>}/>
+        <Route path="/donor-blood-scheduling" element={<DonorBloodScheduling/>}/>
       </Routes>
     </BrowserRouter>
   );
