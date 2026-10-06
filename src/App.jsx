@@ -4,6 +4,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Login from "./Pages/Login.jsx";
 import Register from "./Pages/Register";
@@ -18,6 +20,7 @@ import DonorBloodScheduling from "./Pages/DonorBloodScheduling.jsx";
 function App() {
   return (
     <BrowserRouter>
+    <ToastContainer position="top-right" autoClose={3000} />
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
 

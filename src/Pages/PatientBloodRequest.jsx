@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { showSuccess, showError } from "../components/Notification";
 
 function PatientBloodRequest() {
   const [request, setRequest] = useState({
@@ -22,12 +23,25 @@ function PatientBloodRequest() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    console.log("Blood Request:", request);
+  if (
+    !request.patientName ||
+    !request.bloodGroup ||
+    !request.unitsRequired ||
+    !request.requiredDate ||
+    !request.hospital ||
+    !request.city ||
+    !request.contactNumber
+  ) {
+    showError("Please fill in all required fields.");
+    return;
+  }
 
-    alert("Blood request submitted successfully!");
-  };
+  console.log("Blood Request:", request);
+
+  showSuccess("Blood request submitted successfully!");
+};
 
   return (
     <div className="container py-5">
@@ -49,7 +63,7 @@ function PatientBloodRequest() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} noValidate>
                 
                 {/* Patient Name */}
                 <div className="mb-3">

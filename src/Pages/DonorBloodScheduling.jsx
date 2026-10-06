@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { showSuccess, showError } from "../components/Notification";
 
 function DonorBloodScheduling() {
   const [schedule, setSchedule] = useState({
@@ -22,12 +23,25 @@ function DonorBloodScheduling() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    console.log("Donation Schedule:", schedule);
+  if (
+    !schedule.donorName ||
+    !schedule.bloodGroup ||
+    !schedule.donationDate ||
+    !schedule.donationTime ||
+    !schedule.donationCenter ||
+    !schedule.city ||
+    !schedule.contactNumber
+  ) {
+    showError("Please fill in all required fields.");
+    return;
+  }
 
-    alert("Blood donation scheduled successfully!");
-  };
+  console.log("Donation Schedule:", schedule);
+
+  showSuccess("Blood donation scheduled successfully!");
+};
 
   return (
     <div className="container py-5">
@@ -49,7 +63,7 @@ function DonorBloodScheduling() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} noValidate>
 
                 {/* Donor Name */}
                 <div className="mb-3">
