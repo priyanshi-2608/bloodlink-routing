@@ -128,7 +128,7 @@ function Login() {
                     <div className="input-group">
                       <input
                         type={showPassword ? "text" : "password"}
-                        className={`form-control ${passwordStatus}`}
+                        className={`form-control password-input ${passwordStatus}`}
                         id="password"
                         placeholder="Enter your password"
                         autoComplete="current-password"
@@ -187,7 +187,6 @@ function Login() {
                       Login
                     </button>
                   </div>
-
                 </form>
 
                 {/* Register */}
