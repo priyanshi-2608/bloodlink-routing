@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { showSuccess, showError } from "../components/Notification";
+import FormInput from "../components/FormInput";
 
 function PatientBloodRequest() {
   const [request, setRequest] = useState({
@@ -23,25 +24,32 @@ function PatientBloodRequest() {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (
-    !request.patientName ||
-    !request.bloodGroup ||
-    !request.unitsRequired ||
-    !request.requiredDate ||
-    !request.hospital ||
-    !request.city ||
-    !request.contactNumber
-  ) {
-    showError("Please fill in all required fields.");
-    return;
-  }
+    // Check required fields
+    if (
+      !request.patientName ||
+      !request.bloodGroup ||
+      !request.unitsRequired ||
+      !request.requiredDate ||
+      !request.hospital ||
+      !request.city ||
+      !request.contactNumber
+    ) {
+      showError("Please fill in all required fields.");
+      return;
+    }
 
-  console.log("Blood Request:", request);
+    // Check minimum blood units
+    if (Number(request.unitsRequired) < 1) {
+      showError("Units required must be at least 1.");
+      return;
+    }
 
-  showSuccess("Blood request submitted successfully!");
-};
+    console.log("Blood Request:", request);
+
+    showSuccess("Blood request submitted successfully!");
+  };
 
   return (
     <div className="container py-5">
@@ -49,7 +57,7 @@ function PatientBloodRequest() {
         <div className="col-lg-8">
           <div className="card shadow-sm border-0">
             <div className="card-body p-4 p-md-5">
-              
+
               {/* Header */}
               <div className="text-center mb-4">
                 <i className="bi bi-droplet-half text-danger fs-1"></i>
@@ -64,33 +72,30 @@ function PatientBloodRequest() {
               </div>
 
               <form onSubmit={handleSubmit} noValidate>
-                
-                {/* Patient Name */}
-                <div className="mb-3">
-                  <label className="form-label fw-semibold">
-                    Patient Name
-                  </label>
 
-                  <input
-                    type="text"
-                    name="patientName"
-                    value={request.patientName}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter patient name"
-                    required
-                  />
-                </div>
+                {/* Patient Name */}
+                <FormInput
+                  label="Patient Name"
+                  name="patientName"
+                  value={request.patientName}
+                  onChange={handleChange}
+                  placeholder="Enter patient name"
+                  required
+                />
 
                 <div className="row">
-                  
+
                   {/* Blood Group */}
                   <div className="col-md-6 mb-3">
-                    <label className="form-label fw-semibold">
+                    <label
+                      htmlFor="bloodGroup"
+                      className="form-label fw-semibold"
+                    >
                       Blood Group
                     </label>
 
                     <select
+                      id="bloodGroup"
                       name="bloodGroup"
                       value={request.bloodGroup}
                       onChange={handleChange}
@@ -110,17 +115,13 @@ function PatientBloodRequest() {
                   </div>
 
                   {/* Units Required */}
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label fw-semibold">
-                      Units Required
-                    </label>
-
-                    <input
-                      type="number"
+                  <div className="col-md-6">
+                    <FormInput
+                      label="Units Required"
                       name="unitsRequired"
+                      type="number"
                       value={request.unitsRequired}
                       onChange={handleChange}
-                      className="form-control"
                       placeholder="Enter required units"
                       min="1"
                       required
@@ -129,35 +130,27 @@ function PatientBloodRequest() {
                 </div>
 
                 <div className="row">
-                  
-                  {/* Required Date */}
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label fw-semibold">
-                      Required Date
-                    </label>
 
-                    <input
-                      type="date"
+                  {/* Required Date */}
+                  <div className="col-md-6">
+                    <FormInput
+                      label="Required Date"
                       name="requiredDate"
+                      type="date"
                       value={request.requiredDate}
                       onChange={handleChange}
-                      className="form-control"
                       required
                     />
                   </div>
 
                   {/* Contact Number */}
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label fw-semibold">
-                      Contact Number
-                    </label>
-
-                    <input
-                      type="tel"
+                  <div className="col-md-6">
+                    <FormInput
+                      label="Contact Number"
                       name="contactNumber"
+                      type="tel"
                       value={request.contactNumber}
                       onChange={handleChange}
-                      className="form-control"
                       placeholder="Enter contact number"
                       required
                     />
@@ -165,46 +158,36 @@ function PatientBloodRequest() {
                 </div>
 
                 {/* Hospital */}
-                <div className="mb-3">
-                  <label className="form-label fw-semibold">
-                    Hospital / Medical Center
-                  </label>
-
-                  <input
-                    type="text"
-                    name="hospital"
-                    value={request.hospital}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter hospital name"
-                    required
-                  />
-                </div>
+                <FormInput
+                  label="Hospital / Medical Center"
+                  name="hospital"
+                  value={request.hospital}
+                  onChange={handleChange}
+                  placeholder="Enter hospital name"
+                  required
+                />
 
                 {/* City */}
-                <div className="mb-3">
-                  <label className="form-label fw-semibold">
-                    City
-                  </label>
-
-                  <input
-                    type="text"
-                    name="city"
-                    value={request.city}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter city"
-                    required
-                  />
-                </div>
+                <FormInput
+                  label="City"
+                  name="city"
+                  value={request.city}
+                  onChange={handleChange}
+                  placeholder="Enter city"
+                  required
+                />
 
                 {/* Reason */}
                 <div className="mb-4">
-                  <label className="form-label fw-semibold">
+                  <label
+                    htmlFor="reason"
+                    className="form-label fw-semibold"
+                  >
                     Reason / Additional Information
                   </label>
 
                   <textarea
+                    id="reason"
                     name="reason"
                     value={request.reason}
                     onChange={handleChange}

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import FormInput from "../components/FormInput";
+import { showSuccess, showError } from "../components/Notification";
 
 function Profile() {
   const [profile, setProfile] = useState({
@@ -22,7 +24,28 @@ function Profile() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    // Check required fields
+    if (
+      !profile.fullName ||
+      !profile.email ||
+      !profile.phone ||
+      !profile.bloodGroup ||
+      !profile.city ||
+      !profile.role
+    ) {
+      showError("Please fill in all required fields.");
+      return;
+    }
+
+    // Check phone number
+    if (!/^[0-9]{10}$/.test(profile.phone)) {
+      showError("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
     console.log("Profile:", profile);
+
+    showSuccess("Profile created successfully!");
   };
 
   return (
@@ -31,6 +54,8 @@ function Profile() {
         <div className="col-md-8 col-lg-6">
           <div className="card shadow-sm border-0">
             <div className="card-body p-4">
+
+              {/* Header */}
               <div className="text-center mb-4">
                 <div
                   className="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center mx-auto mb-3"
@@ -50,62 +75,61 @@ function Profile() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label className="form-label fw-semibold">
-                    Full Name
-                  </label>
+              {/* Form */}
+              <form onSubmit={handleSubmit} noValidate>
 
-                  <input
-                    type="text"
-                    name="fullName"
-                    className="form-control"
-                    value={profile.fullName}
-                    onChange={handleChange}
-                    placeholder="Enter your full name"
-                    required
-                  />
-                </div>
+                {/* Full Name */}
+                <FormInput
+                  label="Full Name"
+                  name="fullName"
+                  type="text"
+                  value={profile.fullName}
+                  onChange={handleChange}
+                  placeholder="Enter your full name"
+                  autoComplete="name"
+                  required
+                />
 
-                <div className="mb-3">
-                  <label className="form-label fw-semibold">
-                    Email
-                  </label>
+                {/* Email */}
+                <FormInput
+                  label="Email"
+                  name="email"
+                  type="email"
+                  value={profile.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                  autoComplete="email"
+                  required
+                />
 
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    value={profile.email}
-                    onChange={handleChange}
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label className="form-label fw-semibold">
-                    Phone
-                  </label>
-
-                  <input
-                    type="tel"
-                    name="phone"
-                    className="form-control"
-                    value={profile.phone}
-                    onChange={handleChange}
-                    placeholder="Enter your phone number"
-                    required
-                  />
-                </div>
+                {/* Phone */}
+                <FormInput
+                  label="Phone"
+                  name="phone"
+                  type="tel"
+                  value={profile.phone}
+                  onChange={handleChange}
+                  placeholder="Enter your phone number"
+                  autoComplete="tel"
+                  pattern="[0-9]{10}"
+                  maxLength="10"
+                  required
+                />
 
                 <div className="row">
+
+                  {/* Blood Group */}
+                  {/* Keep normal select until Task 3 */}
                   <div className="col-md-6 mb-3">
-                    <label className="form-label fw-semibold">
+                    <label
+                      htmlFor="bloodGroup"
+                      className="form-label fw-semibold"
+                    >
                       Blood Group
                     </label>
 
                     <select
+                      id="bloodGroup"
                       name="bloodGroup"
                       className="form-select"
                       value={profile.bloodGroup}
@@ -124,29 +148,33 @@ function Profile() {
                     </select>
                   </div>
 
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label fw-semibold">
-                      City
-                    </label>
-
-                    <input
-                      type="text"
+                  {/* City */}
+                  <div className="col-md-6">
+                    <FormInput
+                      label="City"
                       name="city"
-                      className="form-control"
+                      type="text"
                       value={profile.city}
                       onChange={handleChange}
                       placeholder="Enter your city"
+                      autoComplete="address-level2"
                       required
                     />
                   </div>
+
                 </div>
 
+                {/* Role */}
                 <div className="mb-4">
-                  <label className="form-label fw-semibold">
+                  <label
+                    htmlFor="role"
+                    className="form-label fw-semibold"
+                  >
                     Role
                   </label>
 
                   <select
+                    id="role"
                     name="role"
                     className="form-select"
                     value={profile.role}
@@ -160,12 +188,17 @@ function Profile() {
                   </select>
                 </div>
 
+                {/* Submit */}
                 <div className="d-grid">
-                  <button type="submit" className="btn btn-danger">
+                  <button
+                    type="submit"
+                    className="btn btn-danger"
+                  >
                     <i className="bi bi-person-check-fill me-2"></i>
                     Create Profile
                   </button>
                 </div>
+
               </form>
             </div>
           </div>

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import FormInput from "../components/FormInput";
+import { showSuccess, showError } from "../components/Notification";
+
 function Login() {
   const navigate = useNavigate();
 
@@ -10,8 +13,8 @@ function Login() {
   const [emailStatus, setEmailStatus] = useState("");
   const [passwordStatus, setPasswordStatus] = useState("");
 
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState("");
+  // Password show/hide
+  const [showPassword, setShowPassword] = useState(false);
 
   const isValidEmail = (emailValue) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -26,8 +29,6 @@ function Login() {
 
     setEmailStatus("");
     setPasswordStatus("");
-    setMessage("");
-    setMessageType("");
 
     let isValid = true;
 
@@ -47,15 +48,14 @@ function Login() {
       setPasswordStatus("is-valid");
     }
 
-    // Show validation result
+    // Show error notification
     if (!isValid) {
-      setMessage("Please check your email and password.");
-      setMessageType("error-message");
+      showError("Please check your email and password.");
       return;
     }
 
-    setMessage("Login details are valid!");
-    setMessageType("success-message");
+    // Show success notification
+    showSuccess("Login details are valid!");
   };
 
   return (
@@ -74,12 +74,15 @@ function Login() {
                       fill="currentColor"
                       viewBox="0 0 16 16"
                     >
-                      <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6M6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13" />
+                      <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6M6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641-1.717-2.753-2.093-3.13" />
                     </svg>
                   </div>
 
                   <h1 className="brand-name">BloodLink</h1>
-                  <p className="tagline">Share Life, Give Blood</p>
+
+                  <p className="tagline">
+                    Share Life, Give Blood
+                  </p>
                 </div>
 
                 {/* Login Heading */}
@@ -92,50 +95,85 @@ function Login() {
                 <form onSubmit={handleSubmit} noValidate>
 
                   {/* Email */}
-                  <div className="mb-3">
-                    <label htmlFor="email" className="form-label">
-                      Email Address
-                    </label>
+                  <FormInput
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    value={email}
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                      setEmailStatus("");
+                    }}
+                    placeholder="Enter your email"
+                    autoComplete="email"
+                    className={emailStatus}
+                    required
+                  />
 
-                    <input
-                      type="email"
-                      className={`form-control ${emailStatus}`}
-                      id="email"
-                      placeholder="Enter your email"
-                      autoComplete="email"
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value)}
-                    />
-
-                    <div className="invalid-feedback">
+                  {emailStatus === "is-invalid" && (
+                    <div className="invalid-feedback d-block">
                       Please enter a valid email address.
                     </div>
-                  </div>
+                  )}
 
                   {/* Password */}
                   <div className="mb-2">
-                    <label htmlFor="password" className="form-label">
+                    <label
+                      htmlFor="password"
+                      className="form-label"
+                    >
                       Password
                     </label>
 
-                    <input
-                      type="password"
-                      className={`form-control ${passwordStatus}`}
-                      id="password"
-                      placeholder="Enter your password"
-                      autoComplete="current-password"
-                      value={password}
-                      onChange={(event) => setPassword(event.target.value)}
-                    />
+                    <div className="input-group">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className={`form-control ${passwordStatus}`}
+                        id="password"
+                        placeholder="Enter your password"
+                        autoComplete="current-password"
+                        value={password}
+                        onChange={(event) => {
+                          setPassword(event.target.value);
+                          setPasswordStatus("");
+                        }}
+                      />
 
-                    <div className="invalid-feedback">
-                      Password must be at least 6 characters.
+                      <button
+                        type="button"
+                        className="btn btn-outline-secondary"
+                        onClick={() =>
+                          setShowPassword(!showPassword)
+                        }
+                        aria-label={
+                          showPassword
+                            ? "Hide password"
+                            : "Show password"
+                        }
+                      >
+                        <i
+                          className={`bi ${
+                            showPassword
+                              ? "bi-eye-slash"
+                              : "bi-eye"
+                          }`}
+                        ></i>
+                      </button>
                     </div>
+
+                    {passwordStatus === "is-invalid" && (
+                      <div className="invalid-feedback d-block">
+                        Password must be at least 6 characters.
+                      </div>
+                    )}
                   </div>
 
                   {/* Forgot Password */}
                   <div className="d-flex justify-content-end mb-4">
-                    <a href="#forgot-password" className="auth-link">
+                    <a
+                      href="#forgot-password"
+                      className="auth-link"
+                    >
                       Forgot Password?
                     </a>
                   </div>
@@ -150,12 +188,6 @@ function Login() {
                     </button>
                   </div>
 
-                  {/* Validation Message */}
-                  {message && (
-                    <div className={`form-message ${messageType}`}>
-                      {message}
-                    </div>
-                  )}
                 </form>
 
                 {/* Register */}

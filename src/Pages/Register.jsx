@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import FormInput from "../components/FormInput";
+import { showSuccess, showError } from "../components/Notification";
+
 function Register() {
   const navigate = useNavigate();
 
@@ -16,8 +19,10 @@ function Register() {
   });
 
   const [status, setStatus] = useState({});
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState("");
+
+  // Password show/hide
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const isValidEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -101,7 +106,10 @@ function Register() {
     }
 
     // Confirm Password
-    if (confirmPassword === "" || confirmPassword !== password) {
+    if (
+      confirmPassword === "" ||
+      confirmPassword !== password
+    ) {
       newStatus.confirmPassword = "is-invalid";
       isValid = false;
     } else {
@@ -118,14 +126,14 @@ function Register() {
 
     setStatus(newStatus);
 
+    // Show error notification
     if (!isValid) {
-      setMessage("Please check the highlighted fields.");
-      setMessageType("error-message");
+      showError("Please check the highlighted fields.");
       return;
     }
 
-    setMessage("Registration details are valid!");
-    setMessageType("success-message");
+    // Show success notification
+    showSuccess("Registration details are valid!");
   };
 
   return (
@@ -149,7 +157,10 @@ function Register() {
                   </div>
 
                   <h1 className="brand-name">BloodLink</h1>
-                  <p className="tagline">Share Life, Give Blood</p>
+
+                  <p className="tagline">
+                    Share Life, Give Blood
+                  </p>
                 </div>
 
                 {/* Register Heading */}
@@ -160,90 +171,99 @@ function Register() {
 
                 {/* Registration Form */}
                 <form onSubmit={handleSubmit} noValidate>
+
                   <div className="row">
 
                     {/* Full Name */}
-                    <div className="col-md-6 mb-3">
-                      <label htmlFor="fullName" className="form-label">
-                        Full Name
-                      </label>
-
-                      <input
-                        type="text"
-                        className={`form-control ${status.fullName || ""}`}
-                        id="fullName"
+                    <div className="col-md-6">
+                      <FormInput
+                        label="Full Name"
                         name="fullName"
-                        placeholder="Enter your full name"
-                        autoComplete="name"
+                        type="text"
                         value={formData.fullName}
                         onChange={handleChange}
+                        placeholder="Enter your full name"
+                        autoComplete="name"
+                        className={status.fullName || ""}
+                        minLength="2"
+                        required
                       />
 
-                      <div className="invalid-feedback">
-                        Please enter your full name.
-                      </div>
+                      {status.fullName === "is-invalid" && (
+                        <div className="invalid-feedback d-block">
+                          Please enter your full name.
+                        </div>
+                      )}
                     </div>
 
                     {/* Email */}
-                    <div className="col-md-6 mb-3">
-                      <label htmlFor="registerEmail" className="form-label">
-                        Email Address
-                      </label>
-
-                      <input
-                        type="email"
-                        className={`form-control ${status.email || ""}`}
-                        id="registerEmail"
+                    <div className="col-md-6">
+                      <FormInput
+                        label="Email Address"
                         name="email"
-                        placeholder="Enter your email"
-                        autoComplete="email"
+                        type="email"
                         value={formData.email}
                         onChange={handleChange}
+                        placeholder="Enter your email"
+                        autoComplete="email"
+                        className={status.email || ""}
+                        required
                       />
 
-                      <div className="invalid-feedback">
-                        Please enter a valid email address.
-                      </div>
+                      {status.email === "is-invalid" && (
+                        <div className="invalid-feedback d-block">
+                          Please enter a valid email address.
+                        </div>
+                      )}
                     </div>
 
                     {/* Phone */}
-                    <div className="col-md-6 mb-3">
-                      <label htmlFor="phone" className="form-label">
-                        Phone Number
-                      </label>
-
-                      <input
-                        type="tel"
-                        className={`form-control ${status.phone || ""}`}
-                        id="phone"
+                    <div className="col-md-6">
+                      <FormInput
+                        label="Phone Number"
                         name="phone"
-                        placeholder="Enter your phone number"
-                        autoComplete="tel"
+                        type="tel"
                         value={formData.phone}
                         onChange={handleChange}
+                        placeholder="Enter your phone number"
+                        autoComplete="tel"
+                        className={status.phone || ""}
+                        pattern="[0-9]{10}"
+                        maxLength="10"
+                        required
                       />
 
-                      <div className="invalid-feedback">
-                        Please enter a valid 10-digit phone number.
-                      </div>
+                      {status.phone === "is-invalid" && (
+                        <div className="invalid-feedback d-block">
+                          Please enter a valid 10-digit phone number.
+                        </div>
+                      )}
                     </div>
 
                     {/* Blood Group */}
+                    {/* Keep normal select until Task 3 */}
                     <div className="col-md-6 mb-3">
-                      <label htmlFor="bloodGroup" className="form-label">
+                      <label
+                        htmlFor="bloodGroup"
+                        className="form-label"
+                      >
                         Blood Group
                       </label>
 
                       <select
-                        className={`form-select ${status.bloodGroup || ""}`}
+                        className={`form-select ${
+                          status.bloodGroup || ""
+                        }`}
                         id="bloodGroup"
                         name="bloodGroup"
                         value={formData.bloodGroup}
                         onChange={handleChange}
+                        required
                       >
                         <option value="" disabled>
                           Select blood group
                         </option>
+
                         <option value="A+">A+</option>
                         <option value="A-">A-</option>
                         <option value="B+">B+</option>
@@ -254,31 +274,33 @@ function Register() {
                         <option value="O-">O-</option>
                       </select>
 
-                      <div className="invalid-feedback">
-                        Please select your blood group.
-                      </div>
+                      {status.bloodGroup === "is-invalid" && (
+                        <div className="invalid-feedback d-block">
+                          Please select your blood group.
+                        </div>
+                      )}
                     </div>
 
                     {/* City */}
-                    <div className="col-md-6 mb-3">
-                      <label htmlFor="city" className="form-label">
-                        City
-                      </label>
-
-                      <input
-                        type="text"
-                        className={`form-control ${status.city || ""}`}
-                        id="city"
+                    <div className="col-md-6">
+                      <FormInput
+                        label="City"
                         name="city"
-                        placeholder="Enter your city"
-                        autoComplete="address-level2"
+                        type="text"
                         value={formData.city}
                         onChange={handleChange}
+                        placeholder="Enter your city"
+                        autoComplete="address-level2"
+                        className={status.city || ""}
+                        minLength="2"
+                        required
                       />
 
-                      <div className="invalid-feedback">
-                        Please enter your city.
-                      </div>
+                      {status.city === "is-invalid" && (
+                        <div className="invalid-feedback d-block">
+                          Please enter your city.
+                        </div>
+                      )}
                     </div>
 
                     {/* Password */}
@@ -290,20 +312,51 @@ function Register() {
                         Password
                       </label>
 
-                      <input
-                        type="password"
-                        className={`form-control ${status.password || ""}`}
-                        id="registerPassword"
-                        name="password"
-                        placeholder="Create a password"
-                        autoComplete="new-password"
-                        value={formData.password}
-                        onChange={handleChange}
-                      />
+                      <div className="input-group">
+                        <input
+                          type={
+                            showPassword
+                              ? "text"
+                              : "password"
+                          }
+                          className={`form-control ${
+                            status.password || ""
+                          }`}
+                          id="registerPassword"
+                          name="password"
+                          placeholder="Create a password"
+                          autoComplete="new-password"
+                          value={formData.password}
+                          onChange={handleChange}
+                        />
 
-                      <div className="invalid-feedback">
-                        Password must be at least 6 characters.
+                        <button
+                          type="button"
+                          className="btn btn-outline-secondary"
+                          onClick={() =>
+                            setShowPassword(!showPassword)
+                          }
+                          aria-label={
+                            showPassword
+                              ? "Hide password"
+                              : "Show password"
+                          }
+                        >
+                          <i
+                            className={`bi ${
+                              showPassword
+                                ? "bi-eye-slash"
+                                : "bi-eye"
+                            }`}
+                          ></i>
+                        </button>
                       </div>
+
+                      {status.password === "is-invalid" && (
+                        <div className="invalid-feedback d-block">
+                          Password must be at least 6 characters.
+                        </div>
+                      )}
                     </div>
 
                     {/* Confirm Password */}
@@ -315,27 +368,63 @@ function Register() {
                         Confirm Password
                       </label>
 
-                      <input
-                        type="password"
-                        className={`form-control ${status.confirmPassword || ""}`}
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        placeholder="Confirm your password"
-                        autoComplete="new-password"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
-                      />
+                      <div className="input-group">
+                        <input
+                          type={
+                            showConfirmPassword
+                              ? "text"
+                              : "password"
+                          }
+                          className={`form-control ${
+                            status.confirmPassword || ""
+                          }`}
+                          id="confirmPassword"
+                          name="confirmPassword"
+                          placeholder="Confirm your password"
+                          autoComplete="new-password"
+                          value={formData.confirmPassword}
+                          onChange={handleChange}
+                        />
 
-                      <div className="invalid-feedback">
-                        Passwords do not match.
+                        <button
+                          type="button"
+                          className="btn btn-outline-secondary"
+                          onClick={() =>
+                            setShowConfirmPassword(
+                              !showConfirmPassword
+                            )
+                          }
+                          aria-label={
+                            showConfirmPassword
+                              ? "Hide confirm password"
+                              : "Show confirm password"
+                          }
+                        >
+                          <i
+                            className={`bi ${
+                              showConfirmPassword
+                                ? "bi-eye-slash"
+                                : "bi-eye"
+                            }`}
+                          ></i>
+                        </button>
                       </div>
+
+                      {status.confirmPassword === "is-invalid" && (
+                        <div className="invalid-feedback d-block">
+                          Passwords do not match.
+                        </div>
+                      )}
                     </div>
+
                   </div>
 
                   {/* Terms */}
                   <div className="form-check terms-check mb-4">
                     <input
-                      className={`form-check-input ${status.terms || ""}`}
+                      className={`form-check-input ${
+                        status.terms || ""
+                      }`}
                       type="checkbox"
                       id="terms"
                       name="terms"
@@ -343,16 +432,24 @@ function Register() {
                       onChange={handleChange}
                     />
 
-                    <label className="form-check-label" htmlFor="terms">
+                    <label
+                      className="form-check-label"
+                      htmlFor="terms"
+                    >
                       I agree to the{" "}
-                      <a href="#terms" className="auth-link">
+                      <a
+                        href="#terms"
+                        className="auth-link"
+                      >
                         Terms & Conditions
                       </a>
                     </label>
 
-                    <div className="invalid-feedback">
-                      You must agree to the Terms & Conditions.
-                    </div>
+                    {status.terms === "is-invalid" && (
+                      <div className="invalid-feedback d-block">
+                        You must agree to the Terms & Conditions.
+                      </div>
+                    )}
                   </div>
 
                   {/* Create Account */}
@@ -365,12 +462,6 @@ function Register() {
                     </button>
                   </div>
 
-                  {/* Validation Message */}
-                  {message && (
-                    <div className={`form-message ${messageType}`}>
-                      {message}
-                    </div>
-                  )}
                 </form>
 
                 {/* Login Link */}

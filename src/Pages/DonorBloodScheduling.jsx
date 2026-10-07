@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { showSuccess, showError } from "../components/Notification";
+import FormInput from "../components/FormInput";
 
 function DonorBloodScheduling() {
   const [schedule, setSchedule] = useState({
@@ -23,25 +24,25 @@ function DonorBloodScheduling() {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (
-    !schedule.donorName ||
-    !schedule.bloodGroup ||
-    !schedule.donationDate ||
-    !schedule.donationTime ||
-    !schedule.donationCenter ||
-    !schedule.city ||
-    !schedule.contactNumber
-  ) {
-    showError("Please fill in all required fields.");
-    return;
-  }
+    if (
+      !schedule.donorName ||
+      !schedule.bloodGroup ||
+      !schedule.donationDate ||
+      !schedule.donationTime ||
+      !schedule.donationCenter ||
+      !schedule.city ||
+      !schedule.contactNumber
+    ) {
+      showError("Please fill in all required fields.");
+      return;
+    }
 
-  console.log("Donation Schedule:", schedule);
+    console.log("Donation Schedule:", schedule);
 
-  showSuccess("Blood donation scheduled successfully!");
-};
+    showSuccess("Blood donation scheduled successfully!");
+  };
 
   return (
     <div className="container py-5">
@@ -66,31 +67,28 @@ function DonorBloodScheduling() {
               <form onSubmit={handleSubmit} noValidate>
 
                 {/* Donor Name */}
-                <div className="mb-3">
-                  <label className="form-label fw-semibold">
-                    Donor Name
-                  </label>
-
-                  <input
-                    type="text"
-                    name="donorName"
-                    value={schedule.donorName}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter donor name"
-                    required
-                  />
-                </div>
+                <FormInput
+                  label="Donor Name"
+                  name="donorName"
+                  value={schedule.donorName}
+                  onChange={handleChange}
+                  placeholder="Enter donor name"
+                  required
+                />
 
                 <div className="row">
 
                   {/* Blood Group */}
                   <div className="col-md-6 mb-3">
-                    <label className="form-label fw-semibold">
+                    <label
+                      htmlFor="bloodGroup"
+                      className="form-label fw-semibold"
+                    >
                       Blood Group
                     </label>
 
                     <select
+                      id="bloodGroup"
                       name="bloodGroup"
                       value={schedule.bloodGroup}
                       onChange={handleChange}
@@ -110,17 +108,13 @@ function DonorBloodScheduling() {
                   </div>
 
                   {/* Contact Number */}
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label fw-semibold">
-                      Contact Number
-                    </label>
-
-                    <input
-                      type="tel"
+                  <div className="col-md-6">
+                    <FormInput
+                      label="Contact Number"
                       name="contactNumber"
+                      type="tel"
                       value={schedule.contactNumber}
                       onChange={handleChange}
-                      className="form-control"
                       placeholder="Enter contact number"
                       required
                     />
@@ -130,79 +124,61 @@ function DonorBloodScheduling() {
                 <div className="row">
 
                   {/* Donation Date */}
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label fw-semibold">
-                      Donation Date
-                    </label>
-
-                    <input
-                      type="date"
+                  <div className="col-md-6">
+                    <FormInput
+                      label="Donation Date"
                       name="donationDate"
+                      type="date"
                       value={schedule.donationDate}
                       onChange={handleChange}
-                      className="form-control"
                       required
                     />
                   </div>
 
                   {/* Donation Time */}
-                  <div className="col-md-6 mb-3">
-                    <label className="form-label fw-semibold">
-                      Donation Time
-                    </label>
-
-                    <input
-                      type="time"
+                  <div className="col-md-6">
+                    <FormInput
+                      label="Donation Time"
                       name="donationTime"
+                      type="time"
                       value={schedule.donationTime}
                       onChange={handleChange}
-                      className="form-control"
                       required
                     />
                   </div>
                 </div>
 
                 {/* Donation Center */}
-                <div className="mb-3">
-                  <label className="form-label fw-semibold">
-                    Donation Center
-                  </label>
-
-                  <input
-                    type="text"
-                    name="donationCenter"
-                    value={schedule.donationCenter}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter donation center"
-                    required
-                  />
-                </div>
+                <FormInput
+                  label="Donation Center"
+                  name="donationCenter"
+                  value={schedule.donationCenter}
+                  onChange={handleChange}
+                  placeholder="Enter donation center"
+                  required
+                />
 
                 {/* City */}
-                <div className="mb-3">
-                  <label className="form-label fw-semibold">
-                    City
-                  </label>
-
-                  <input
-                    type="text"
-                    name="city"
-                    value={schedule.city}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter city"
-                    required
-                  />
-                </div>
+                <FormInput
+                  label="City"
+                  name="city"
+                  value={schedule.city}
+                  onChange={handleChange}
+                  placeholder="Enter city"
+                  required
+                />
 
                 {/* Notes */}
                 <div className="mb-4">
-                  <label className="form-label fw-semibold">
+                  <label
+                    htmlFor="notes"
+                    className="form-label fw-semibold"
+                  >
                     Notes / Additional Information
                   </label>
 
                   <textarea
+                    id="notes"
                     name="notes"
                     value={schedule.notes}
                     onChange={handleChange}
