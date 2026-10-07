@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import FormInput from "../components/FormInput";
 import { showSuccess, showError } from "../components/Notification";
+import BloodGroupDropdown from "../components/BloodGroupDropdown";
 
 function Register() {
   const navigate = useNavigate();
@@ -241,38 +242,14 @@ function Register() {
                     </div>
 
                     {/* Blood Group */}
-                    {/* Keep normal select until Task 3 */}
-                    <div className="col-md-6 mb-3">
-                      <label
-                        htmlFor="bloodGroup"
-                        className="form-label"
-                      >
-                        Blood Group
-                      </label>
-
-                      <select
-                        className={`form-select ${
-                          status.bloodGroup || ""
-                        }`}
-                        id="bloodGroup"
-                        name="bloodGroup"
+                    <div className="col-md-6">
+                      <BloodGroupDropdown
                         value={formData.bloodGroup}
                         onChange={handleChange}
                         required
-                      >
-                        <option value="" disabled>
-                          Select blood group
-                        </option>
+                        className={status.bloodGroup || ""}
+                      />
 
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                      </select>
 
                       {status.bloodGroup === "is-invalid" && (
                         <div className="invalid-feedback d-block">
@@ -319,9 +296,8 @@ function Register() {
                               ? "text"
                               : "password"
                           }
-                          className={`form-control ${
-                            status.password || ""
-                          }`}
+                          className={`form-control ${status.password || ""
+                            }`}
                           id="registerPassword"
                           name="password"
                           placeholder="Create a password"
@@ -343,11 +319,10 @@ function Register() {
                           }
                         >
                           <i
-                            className={`bi ${
-                              showPassword
-                                ? "bi-eye-slash"
-                                : "bi-eye"
-                            }`}
+                            className={`bi ${showPassword
+                              ? "bi-eye-slash"
+                              : "bi-eye"
+                              }`}
                           ></i>
                         </button>
                       </div>
@@ -375,9 +350,8 @@ function Register() {
                               ? "text"
                               : "password"
                           }
-                          className={`form-control ${
-                            status.confirmPassword || ""
-                          }`}
+                          className={`form-control ${status.confirmPassword || ""
+                            }`}
                           id="confirmPassword"
                           name="confirmPassword"
                           placeholder="Confirm your password"
@@ -401,11 +375,10 @@ function Register() {
                           }
                         >
                           <i
-                            className={`bi ${
-                              showConfirmPassword
-                                ? "bi-eye-slash"
-                                : "bi-eye"
-                            }`}
+                            className={`bi ${showConfirmPassword
+                              ? "bi-eye-slash"
+                              : "bi-eye"
+                              }`}
                           ></i>
                         </button>
                       </div>
@@ -422,9 +395,8 @@ function Register() {
                   {/* Terms */}
                   <div className="form-check terms-check mb-4">
                     <input
-                      className={`form-check-input ${
-                        status.terms || ""
-                      }`}
+                      className={`form-check-input ${status.terms || ""
+                        }`}
                       type="checkbox"
                       id="terms"
                       name="terms"

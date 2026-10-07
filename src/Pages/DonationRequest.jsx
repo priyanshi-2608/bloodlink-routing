@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { showSuccess, showError } from "../components/Notification";
 import FormInput from "../components/FormInput";
+import BloodGroupDropdown from "../components/BloodGroupDropdown";
 
 function DonationRequest() {
   const [request, setRequest] = useState({
@@ -81,33 +82,11 @@ function DonationRequest() {
                     />
                   </div>
 
-                  <div className="col-md-6 mb-3">
-                    <label
-                      htmlFor="bloodGroup"
-                      className="form-label fw-semibold"
-                    >
-                      Blood Group
-                    </label>
-
-                    <select
-                      id="bloodGroup"
-                      name="bloodGroup"
-                      className="form-select"
-                      value={request.bloodGroup}
-                      onChange={handleChange}
-                      required
-                    >
-                      <option value="">Select blood group</option>
-                      <option value="A+">A+</option>
-                      <option value="A-">A-</option>
-                      <option value="B+">B+</option>
-                      <option value="B-">B-</option>
-                      <option value="AB+">AB+</option>
-                      <option value="AB-">AB-</option>
-                      <option value="O+">O+</option>
-                      <option value="O-">O-</option>
-                    </select>
-                  </div>
+                  <BloodGroupDropdown
+                    value={request.bloodGroup}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
                 {/* Units + Required Date */}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormInput from "../components/FormInput";
 import { showSuccess, showError } from "../components/Notification";
+import BloodGroupDropdown from "../components/BloodGroupDropdown";
 
 function Profile() {
   const [profile, setProfile] = useState({
@@ -120,33 +121,11 @@ function Profile() {
 
                   {/* Blood Group */}
                   {/* Keep normal select until Task 3 */}
-                  <div className="col-md-6 mb-3">
-                    <label
-                      htmlFor="bloodGroup"
-                      className="form-label fw-semibold"
-                    >
-                      Blood Group
-                    </label>
-
-                    <select
-                      id="bloodGroup"
-                      name="bloodGroup"
-                      className="form-select"
-                      value={profile.bloodGroup}
-                      onChange={handleChange}
-                      required
-                    >
-                      <option value="">Select</option>
-                      <option value="A+">A+</option>
-                      <option value="A-">A-</option>
-                      <option value="B+">B+</option>
-                      <option value="B-">B-</option>
-                      <option value="AB+">AB+</option>
-                      <option value="AB-">AB-</option>
-                      <option value="O+">O+</option>
-                      <option value="O-">O-</option>
-                    </select>
-                  </div>
+                  <BloodGroupDropdown
+                    value={profile.bloodGroup}
+                    onChange={handleChange}
+                    required
+                  />
 
                   {/* City */}
                   <div className="col-md-6">
