@@ -1,4 +1,44 @@
 /* ================================
+   BloodLink Global Color Theme
+================================ */
+
+:root {
+    --primary-color: #dc3545;
+    --primary-hover: #b02a37;
+    --primary-light: rgba(220, 53, 69, 0.15);
+
+    --text-color: #212529;
+    --muted-color: #6c757d;
+
+    --background-color: #f8f9fa;
+    --white: #ffffff;
+
+    --border-color: #dee2e6;
+    --placeholder-color: #adb5bd;
+
+    --success-color: #198754;
+    --danger-color: #dc3545;
+
+    /* Form Validation Colors */
+    --error-text: #842029;
+    --error-background: #f8d7da;
+    --error-border: #f5c2c7;
+
+    --success-text: #0f5132;
+    --success-background: #d1e7dd;
+    --success-border: #badbcc;
+
+    /* Dashboard Theme Colors */
+    --light-red: #fff0f0;
+    --soft-red: #fff5f5;
+    --welcome-border: #f1d5d5;
+    --icon-background: #ffe3e3;
+    --card-border: #e9ecef;
+    --card-shadow: rgba(0, 0, 0, 0.05);
+    --hover-shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* ================================
    Global
 ================================ */
 
@@ -10,10 +50,9 @@ body {
     margin: 0;
     min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-    background: #f8f9fa;
-    color: #212529;
+    background: var(--background-color);
+    color: var(--text-color);
 }
-
 
 /* ================================
    Login Page
@@ -27,7 +66,6 @@ body {
     padding: 30px 15px;
 }
 
-
 /* ================================
    Login Card
 ================================ */
@@ -37,7 +75,7 @@ body {
     border: none;
     border-radius: 18px;
     padding: 0;
-    background: #ffffff;
+    background: var(--white);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -48,7 +86,6 @@ body {
 .login-card .card-body {
     padding: 35px;
 }
-
 
 /* ================================
    BloodLink Branding
@@ -62,7 +99,7 @@ body {
     width: 58px;
     height: 58px;
     margin: 0 auto 10px;
-    color: #dc3545;
+    color: var(--primary-color);
 }
 
 .blood-icon svg {
@@ -79,10 +116,9 @@ body {
 
 .tagline {
     margin: 4px 0 0;
-    color: #6c757d;
+    color: var(--muted-color);
     font-size: 14px;
 }
-
 
 /* ================================
    Login Heading
@@ -100,10 +136,9 @@ body {
 
 .login-heading p {
     margin: 0;
-    color: #6c757d;
+    color: var(--muted-color);
     font-size: 14px;
 }
-
 
 /* ================================
    Form Labels
@@ -115,7 +150,6 @@ body {
     font-weight: 600;
 }
 
-
 /* ================================
    Form Inputs
 ================================ */
@@ -123,28 +157,27 @@ body {
 .form-control {
     min-height: 46px;
     padding: 10px 13px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     font-size: 14px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-control::placeholder {
-    color: #adb5bd;
+    color: var(--placeholder-color);
 }
 
 .form-control:focus {
-    border-color: #dc3545;
-    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem var(--primary-light);
 }
-
 
 /* ================================
    Authentication Links
 ================================ */
 
 .auth-link {
-    color: #dc3545;
+    color: var(--primary-color);
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
@@ -152,10 +185,9 @@ body {
 }
 
 .auth-link:hover {
-    color: #b02a37;
+    color: var(--primary-hover);
     text-decoration: underline;
 }
-
 
 /* ================================
    Login Button
@@ -179,7 +211,6 @@ body {
     transform: translateY(0);
 }
 
-
 /* ================================
    Register Section
 ================================ */
@@ -187,7 +218,7 @@ body {
 .register-section {
     margin-top: 25px;
     font-size: 14px;
-    color: #6c757d;
+    color: var(--muted-color);
 }
 
 /* ================================
@@ -195,7 +226,6 @@ body {
 ================================ */
 
 @media (max-width: 576px) {
-
     .login-page {
         padding: 20px 12px;
     }
@@ -211,7 +241,6 @@ body {
     .login-heading h2 {
         font-size: 23px;
     }
-
 }
 
 /* ================================
@@ -238,20 +267,20 @@ body {
 .form-select {
     min-height: 46px;
     padding: 10px 13px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     font-size: 14px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-select:focus {
-    border-color: #dc3545;
-    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem var(--primary-light);
 }
 
 .terms-check {
     font-size: 13px;
-    color: #6c757d;
+    color: var(--muted-color);
 }
 
 .terms-check .form-check-input {
@@ -260,8 +289,8 @@ body {
 }
 
 .terms-check .form-check-input:checked {
-    background-color: #dc3545;
-    border-color: #dc3545;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .terms-check .form-check-label {
@@ -269,7 +298,6 @@ body {
 }
 
 @media (max-width: 576px) {
-
     .register-page {
         padding-top: 20px;
         padding-bottom: 20px;
@@ -278,10 +306,12 @@ body {
     .register-page .login-card .card-body {
         padding: 28px 20px;
     }
-
 }
 
-/* Form Validation */
+/* ================================
+   Form Validation
+================================ */
+
 .form-message {
     display: none;
     margin-top: 15px;
@@ -293,16 +323,16 @@ body {
 
 .error-message {
     display: block;
-    color: #842029;
-    background-color: #f8d7da;
-    border: 1px solid #f5c2c7;
+    color: var(--error-text);
+    background-color: var(--error-background);
+    border: 1px solid var(--error-border);
 }
 
 .success-message {
     display: block;
-    color: #0f5132;
-    background-color: #d1e7dd;
-    border: 1px solid #badbcc;
+    color: var(--success-text);
+    background-color: var(--success-background);
+    border: 1px solid var(--success-border);
 }
 
 .register-link-button {
