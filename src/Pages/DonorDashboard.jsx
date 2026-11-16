@@ -5,7 +5,6 @@ import DonorStats from "../components/donor/DonorStats";
 import BloodRequests from "../components/donor/BloodRequests";
 import WhyDonate from "../components/donor/WhyDonate";
 import DonationHistory from "../components/donor/DonationHistory";
-import Footer from "../components/donor/Footer";
 
 function DonorDashboard() {
   return (
@@ -19,8 +18,6 @@ function DonorDashboard() {
         <WhyDonate />
         <DonationHistory />
       </main>
-
-      <Footer />
     </>
   );
 }

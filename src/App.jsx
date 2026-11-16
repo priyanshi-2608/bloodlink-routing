@@ -17,6 +17,8 @@ import DonationRequest from "./Pages/DonationRequest.jsx";
 import PatientBloodRequest from "./Pages/PatientBloodRequest.jsx";
 import DonorBloodScheduling from "./Pages/DonorBloodScheduling.jsx";
 
+import Footer from "./components/Footer.jsx";
+
 function App() {
   return (
     <BrowserRouter>
@@ -39,6 +41,8 @@ function App() {
         <Route path="/patient-blood-request" element={<PatientBloodRequest/>}/>
         <Route path="/donor-blood-scheduling" element={<DonorBloodScheduling/>}/>
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   );
 }
