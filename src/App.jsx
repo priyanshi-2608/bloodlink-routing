@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Login from "./Pages/Login.jsx";
 import Register from "./Pages/Register";
+import ForgotPassword from "./Pages/ForgotPassword.jsx";
 import PatientDashboard from "./Pages/PatientDashboard.jsx";
 import DonorDashboard from "./Pages/DonorDashboard.jsx";
 import AdminDashboard from "./Pages/AdminDashboard.jsx";
@@ -27,15 +28,11 @@ function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
 
         <Route path="/login" element={<Login />} />
-
         <Route path="/register" element={<Register />} />
-
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/patient" element={<PatientDashboard />} />
-
         <Route path="/donor" element={<DonorDashboard />} />
-
         <Route path="/admin" element={<AdminDashboard />} />
-
         <Route path="/profile" element={<Profile />} />
         <Route path="/donation-request" element={<DonationRequest />}/>
         <Route path="/patient-blood-request" element={<PatientBloodRequest/>}/>

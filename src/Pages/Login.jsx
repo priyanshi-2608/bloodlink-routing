@@ -152,11 +152,10 @@ function Login() {
                         }
                       >
                         <i
-                          className={`bi ${
-                            showPassword
+                          className={`bi ${showPassword
                               ? "bi-eye-slash"
                               : "bi-eye"
-                          }`}
+                            }`}
                         ></i>
                       </button>
                     </div>
@@ -170,12 +169,13 @@ function Login() {
 
                   {/* Forgot Password */}
                   <div className="d-flex justify-content-end mb-4">
-                    <a
-                      href="#forgot-password"
-                      className="auth-link"
+                    <button
+                      type="button"
+                      className="auth-link register-link-button"
+                      onClick={() => navigate("/forgot-password")}
                     >
                       Forgot Password?
-                    </a>
+                    </button>
                   </div>
 
                   {/* Login Button */}
