@@ -195,3 +195,100 @@ body {
   width: 1.2em;
   height: 1.2em;
 }
+
+
+/* ================================
+   Admin Sidebar
+================================ */
+
+.admin-sidebar {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 18px var(--card-shadow);
+
+  /* Sticky Sidebar */
+  position: sticky;
+  top: 90px;
+  align-self: flex-start;
+
+  /* Sidebar Height */
+  height: fit-content;
+  min-height: auto;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+}
+
+.sidebar-title {
+  color: var(--text-color);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.sidebar-title i {
+  color: var(--primary-color);
+}
+
+.admin-sidebar .accordion-item {
+  border: none;
+  margin-bottom: 8px;
+  background: transparent;
+}
+
+.admin-sidebar .accordion-button {
+  padding: 12px;
+  border-radius: 10px !important;
+  font-weight: 500;
+  color: var(--text-color);
+  background: var(--background-color);
+  box-shadow: none;
+}
+
+.admin-sidebar .accordion-button:not(.collapsed) {
+  color: var(--primary-color);
+  background: var(--light-red);
+}
+
+.admin-sidebar .accordion-button:focus {
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.admin-sidebar .accordion-button::after {
+  background-size: 14px;
+}
+
+.sidebar-link {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-color);
+  text-align: left;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  color: var(--primary-color);
+  background: var(--light-red);
+}
+
+.sidebar-submenu {
+  display: block;
+  width: 100%;
+  padding: 9px 12px;
+  border: none;
+  background: transparent;
+  color: var(--muted-color);
+  text-align: left;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-submenu:hover {
+  color: var(--primary-color);
+  background: var(--soft-red);
+}
