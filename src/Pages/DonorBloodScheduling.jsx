@@ -15,6 +15,8 @@ function DonorBloodScheduling() {
     notes: "",
   });
 
+  const [showModal, setShowModal] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -39,8 +41,13 @@ function DonorBloodScheduling() {
       showError("Please fill in all required fields.");
       return;
     }
+    setShowModal(true);
+  };
 
+  const handleConfirmDonation = () => {
     console.log("Donation Schedule:", schedule);
+
+    setShowModal(false);
 
     showSuccess("Blood donation scheduled successfully!");
   };
@@ -179,6 +186,67 @@ function DonorBloodScheduling() {
                 </div>
 
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Donation Confirmation Modal */}
+      <div
+        className={`modal fade ${showModal ? "show d-block" : ""}`}
+        tabIndex="-1"
+        role="dialog"
+        aria-modal={showModal ? "true" : undefined}
+        style={{ backgroundColor: showModal ? "rgba(0, 0, 0, 0.5)" : "transparent" }}
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content border-0 shadow">
+            <div className="modal-header">
+              <h5 className="modal-title fw-bold">
+                <i className="bi bi-heart-fill text-danger me-2"></i>
+                Confirm Donation
+              </h5>
+
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setShowModal(false)}
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div className="modal-body">
+              <p className="text-muted">
+                Please review your donation appointment details before confirming.
+              </p>
+
+              <p><strong>Donor Name:</strong> {schedule.donorName}</p>
+              <p><strong>Blood Group:</strong> {schedule.bloodGroup}</p>
+              <p><strong>Date:</strong> {schedule.donationDate}</p>
+              <p><strong>Time:</strong> {schedule.donationTime}</p>
+              <p><strong>Donation Center:</strong> {schedule.donationCenter}</p>
+              <p><strong>City:</strong> {schedule.city}</p>
+              <p className="mb-0">
+                <strong>Contact:</strong> {schedule.contactNumber}
+              </p>
+            </div>
+
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                onClick={() => setShowModal(false)}
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={handleConfirmDonation}
+              >
+                <i className="bi bi-check-circle me-2"></i>
+                Confirm Donation
+              </button>
             </div>
           </div>
         </div>
