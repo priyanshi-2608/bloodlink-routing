@@ -5,12 +5,11 @@ import BloodGroupDropdown from "../components/BloodGroupDropdown";
 
 function Profile() {
   const [profile, setProfile] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    bloodGroup: "",
-    city: "",
-    role: "",
+    fullName: "Priya Sharma",
+    email: "priya@example.com",
+    phone: "9876543210",
+    bloodGroup: "O+",
+    city: "Ahmedabad",
   });
 
   const handleChange = (event) => {
@@ -31,8 +30,7 @@ function Profile() {
       !profile.email ||
       !profile.phone ||
       !profile.bloodGroup ||
-      !profile.city ||
-      !profile.role
+      !profile.city
     ) {
       showError("Please fill in all required fields.");
       return;
@@ -46,7 +44,7 @@ function Profile() {
 
     console.log("Profile:", profile);
 
-    showSuccess("Profile created successfully!");
+    showSuccess("Profile updated successfully!");
   };
 
   return (
@@ -69,10 +67,10 @@ function Profile() {
                   <i className="bi bi-person-fill"></i>
                 </div>
 
-                <h2 className="fw-bold mb-1">Create Profile</h2>
+                <h2 className="fw-bold mb-1">Edit Patient Profile</h2>
 
                 <p className="text-muted mb-0">
-                  Enter your profile information
+                  Update your personal information
                 </p>
               </div>
 
@@ -143,38 +141,14 @@ function Profile() {
 
                 </div>
 
-                {/* Role */}
-                <div className="mb-4">
-                  <label
-                    htmlFor="role"
-                    className="form-label fw-semibold"
-                  >
-                    Role
-                  </label>
-
-                  <select
-                    id="role"
-                    name="role"
-                    className="form-select"
-                    value={profile.role}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Select role</option>
-                    <option value="Donor">Donor</option>
-                    <option value="Patient">Patient</option>
-                    <option value="Admin">Admin</option>
-                  </select>
-                </div>
-
                 {/* Submit */}
                 <div className="d-grid">
                   <button
                     type="submit"
                     className="btn btn-danger"
                   >
-                    <i className="bi bi-person-check-fill me-2"></i>
-                    Create Profile
+                    <i className="bi bi-save-fill me-2"></i>
+                    Save Changes
                   </button>
                 </div>
 
