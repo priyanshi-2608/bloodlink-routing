@@ -12,6 +12,7 @@ import Register from "./Pages/Register";
 import ForgotPassword from "./Pages/ForgotPassword.jsx";
 import PatientDashboard from "./Pages/PatientDashboard.jsx";
 import DonorDashboard from "./Pages/DonorDashboard.jsx";
+import DonorProfile from "./Pages/DonorProfilePage.jsx";
 import AdminDashboard from "./Pages/AdminDashboard.jsx";
 import Profile from "./Pages/Profile.jsx";
 import DonationRequest from "./Pages/DonationRequest.jsx";
@@ -32,6 +33,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/patient" element={<PatientDashboard />} />
         <Route path="/donor" element={<DonorDashboard />} />
+        <Route path="/donor-profile" element={<DonorProfile />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/donation-request" element={<DonationRequest />}/>
