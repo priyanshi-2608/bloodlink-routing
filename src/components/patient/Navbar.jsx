@@ -26,6 +26,12 @@ function Navbar() {
               </a>
             </li>
 
+          <li className="nav-item">
+              <a className="nav-link" href="/blood-availability">
+                Find Blood
+              </a>
+            </li>
+
             <li className="nav-item">
               <a className="nav-link" href="/patient-blood-request">
                 Blood Requests
