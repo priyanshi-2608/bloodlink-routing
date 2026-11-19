@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 const requests = [
   {
     id: "BL-1024",
@@ -25,7 +27,70 @@ const requests = [
   },
 ];
 
+function BloodRequestsSkeleton() {
+  return (
+    <div className="card dashboard-card border-0 mb-4">
+      <div className="card-body p-4">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <div className="w-50">
+            <div className="placeholder-glow">
+              <span className="placeholder col-6"></span>
+              <span className="placeholder col-9"></span>
+            </div>
+          </div>
+
+          <div className="placeholder-glow">
+            <span className="placeholder col-12" style={{ width: "75px" }}></span>
+          </div>
+        </div>
+
+        {[1, 2, 3].map((item) => (
+          <div
+            key={item}
+            className="row align-items-center py-3 border-top"
+          >
+            <div className="col-2 placeholder-glow">
+              <span className="placeholder col-10"></span>
+            </div>
+
+            <div className="col-2 placeholder-glow">
+              <span className="placeholder col-8"></span>
+            </div>
+
+            <div className="col-3 placeholder-glow">
+              <span className="placeholder col-10"></span>
+            </div>
+
+            <div className="col-2 placeholder-glow">
+              <span className="placeholder col-8"></span>
+            </div>
+
+            <div className="col-1 placeholder-glow">
+              <span className="placeholder col-6"></span>
+            </div>
+
+            <div className="col-2 placeholder-glow">
+              <span className="placeholder col-8"></span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 function BloodRequests() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+  if (loading) {
+  return <BloodRequestsSkeleton />;
+}
   return (
     <div className="card dashboard-card border-0 mb-4">
       <div className="card-body p-4">
@@ -80,11 +145,10 @@ function BloodRequests() {
 
                   <td>
                     <span
-                      className={`badge ${
-                        request.urgency === "Urgent"
+                      className={`badge ${request.urgency === "Urgent"
                           ? "text-bg-danger"
                           : "text-bg-warning"
-                      }`}
+                        }`}
                     >
                       {request.urgency}
                     </span>
