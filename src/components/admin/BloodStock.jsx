@@ -81,7 +81,7 @@ function BloodStock() {
   };
 
   return (
-    <section className="container py-5">
+    <section className="py-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <h2 className="fw-bold mb-1">Blood Stock</h2>
