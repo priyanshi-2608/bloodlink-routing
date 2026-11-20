@@ -10,15 +10,15 @@ function Navbar() {
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#adminNavbar"
-          aria-controls="adminNavbar"
+          data-bs-target="#patientNavbar"
+          aria-controls="patientNavbar"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="adminNavbar">
+        <div className="collapse navbar-collapse" id="patientNavbar">
           <ul className="navbar-nav ms-auto align-items-lg-center gap-lg-2">
             <li className="nav-item">
               <a className="nav-link active" href="#">

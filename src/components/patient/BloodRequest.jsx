@@ -1,6 +1,6 @@
 function BloodRequest() {
   return (
-    <div className="card dashboard-card border-0 h-100">
+    <div className="card dashboard-card blood-request-card border-0 h-100">
       <div className="card-body p-4">
         <div className="request-icon mb-3">
            <i className="bi bi-droplet-fill"></i>
