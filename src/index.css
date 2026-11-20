@@ -1,6 +1,4 @@
-/* ================================
-   BloodLink Global Color Theme
-================================ */
+/* BloodLink Global Color Theme */
 
 :root {
     --primary-color: #dc3545;
@@ -38,9 +36,7 @@
     --hover-shadow: rgba(0, 0, 0, 0.08);
 }
 
-/* ================================
-   Global
-================================ */
+/* Global */
 
 * {
     box-sizing: border-box;
@@ -54,9 +50,7 @@ body {
     color: var(--text-color);
 }
 
-/* ================================
-   Login Page
-================================ */
+/* Login Page */
 
 .login-page {
     min-height: 100vh;
@@ -66,9 +60,7 @@ body {
     padding: 30px 15px;
 }
 
-/* ================================
-   Login Card
-================================ */
+/* Login Card */
 
 .login-card {
     width: 100%;
@@ -87,9 +79,7 @@ body {
     padding: 35px;
 }
 
-/* ================================
-   BloodLink Branding
-================================ */
+/* Blood Link Branding */
 
 .brand-section {
     margin-bottom: 30px;
@@ -120,9 +110,7 @@ body {
     font-size: 14px;
 }
 
-/* ================================
-   Login Heading
-================================ */
+/* Login Heading */
 
 .login-heading {
     margin-bottom: 25px;
@@ -140,9 +128,7 @@ body {
     font-size: 14px;
 }
 
-/* ================================
-   Form Labels
-================================ */
+/* Form Labels */
 
 .form-label {
     margin-bottom: 7px;
@@ -150,9 +136,7 @@ body {
     font-weight: 600;
 }
 
-/* ================================
-   Form Inputs
-================================ */
+/* Form Inputs */
 
 .form-control {
     min-height: 46px;
@@ -172,9 +156,7 @@ body {
     box-shadow: 0 0 0 0.2rem var(--primary-light);
 }
 
-/* ================================
-   Authentication Links
-================================ */
+/* Authentication Links */
 
 .auth-link {
     color: var(--primary-color);
@@ -189,9 +171,7 @@ body {
     text-decoration: underline;
 }
 
-/* ================================
-   Login Button
-================================ */
+/* Login Button */
 
 .login-btn {
     min-height: 46px;
@@ -211,9 +191,7 @@ body {
     transform: translateY(0);
 }
 
-/* ================================
-   Register Section
-================================ */
+/* Register Section */
 
 .register-section {
     margin-top: 25px;
@@ -221,9 +199,7 @@ body {
     color: var(--muted-color);
 }
 
-/* ================================
-   Mobile Responsive
-================================ */
+/* Mobile Responsive */
 
 @media (max-width: 576px) {
     .login-page {
@@ -243,9 +219,7 @@ body {
     }
 }
 
-/* ================================
-   Register Page
-================================ */
+/* Register Page */
 
 .register-page {
     padding-top: 40px;
@@ -308,9 +282,7 @@ body {
     }
 }
 
-/* ================================
-   Form Validation
-================================ */
+/* Form Validation */
 
 .form-message {
     display: none;
@@ -342,9 +314,7 @@ body {
     cursor: pointer;
 }
 
-/* ================================
-   Form Entrance Animations
-================================ */
+/* Form Entrance Animations */
 
 @keyframes formSlideIn {
     from {
@@ -360,9 +330,7 @@ body {
     animation: formSlideIn 0.7s ease-out;
 }
 
-/* ================================
-   Form Content Animations
-================================ */
+/* Form Content Animations */
 
 .brand-section,
 .login-heading {
@@ -381,9 +349,7 @@ body {
     }
 }
 
-/* ================================
-   Smooth Form Element Transitions
-================================ */
+/* Smooth Form Animation Transition */
 
 .form-control,
 .form-select {
