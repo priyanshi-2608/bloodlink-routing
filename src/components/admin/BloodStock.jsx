@@ -52,6 +52,17 @@ function BloodStock() {
     },
   ]);
 
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(bloodStock.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+
+  const currentStock = bloodStock.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
   const getStatusClass = (status) => {
     if (status === "Available") {
       return "text-bg-success";
@@ -80,8 +91,15 @@ function BloodStock() {
     setBloodStock(updatedStock);
   };
 
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
   return (
     <section className="py-5">
+      {/* Section Heading */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <h2 className="fw-bold mb-1">Blood Stock</h2>
@@ -96,6 +114,7 @@ function BloodStock() {
         </span>
       </div>
 
+      {/* Blood Stock Table */}
       <div className="card border-0 shadow-sm">
         <div className="card-body p-0">
           <div className="table-responsive">
@@ -110,40 +129,109 @@ function BloodStock() {
               </thead>
 
               <tbody>
-                {bloodStock.map((blood, index) => (
-                  <tr key={blood.bloodGroup}>
-                    <td className="px-4">
-                      <span className="badge text-bg-danger fs-6">
-                        {blood.bloodGroup}
-                      </span>
-                    </td>
+                {currentStock.map((blood) => {
+                  const originalIndex = bloodStock.findIndex(
+                    (item) => item.bloodGroup === blood.bloodGroup
+                  );
 
-                    <td>
-                      <input
-                        type="number"
-                        min="0"
-                        className="form-control"
-                        style={{ maxWidth: "120px" }}
-                        value={blood.units}
-                        onChange={(event) =>
-                          handleUnitsChange(index, event.target.value)
-                        }
-                      />
-                    </td>
+                  return (
+                    <tr key={blood.bloodGroup}>
+                      <td className="px-4">
+                        <span className="badge text-bg-danger fs-6">
+                          {blood.bloodGroup}
+                        </span>
+                      </td>
 
-                    <td>
-                      <span
-                        className={`badge ${getStatusClass(blood.status)}`}
-                      >
-                        {blood.status}
-                      </span>
-                    </td>
+                      <td>
+                        <input
+                          type="number"
+                          min="0"
+                          className="form-control"
+                          style={{ maxWidth: "120px" }}
+                          value={blood.units}
+                          onChange={(event) =>
+                            handleUnitsChange(
+                              originalIndex,
+                              event.target.value
+                            )
+                          }
+                        />
+                      </td>
 
-                    <td>{blood.lastUpdated}</td>
-                  </tr>
-                ))}
+                      <td>
+                        <span
+                          className={`badge ${getStatusClass(blood.status)}`}
+                        >
+                          {blood.status}
+                        </span>
+                      </td>
+
+                      <td>{blood.lastUpdated}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
+          </div>
+
+          {/* Pagination */}
+          <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 p-3 border-top">
+            <p className="text-muted small mb-0">
+              Showing {startIndex + 1} to{" "}
+              {Math.min(startIndex + itemsPerPage, bloodStock.length)} of{" "}
+              {bloodStock.length} blood groups
+            </p>
+
+            <nav aria-label="Blood stock pagination">
+              <ul className="pagination pagination-sm mb-0">
+                <li
+                  className={`page-item ${
+                    currentPage === 1 ? "disabled" : ""
+                  }`}
+                >
+                  <button
+                    className="page-link"
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                  >
+                    Previous
+                  </button>
+                </li>
+
+                {Array.from(
+                  { length: totalPages },
+                  (_, index) => index + 1
+                ).map((page) => (
+                  <li
+                    className={`page-item ${
+                      currentPage === page ? "active" : ""
+                    }`}
+                    key={page}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageChange(page)}
+                    >
+                      {page}
+                    </button>
+                  </li>
+                ))}
+
+                <li
+                  className={`page-item ${
+                    currentPage === totalPages ? "disabled" : ""
+                  }`}
+                >
+                  <button
+                    className="page-link"
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </button>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
