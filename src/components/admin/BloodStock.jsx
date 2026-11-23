@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { showSuccess, showWarning } from "../Notification";
 
 function BloodStock() {
   const [bloodStock, setBloodStock] = useState([
@@ -76,6 +77,11 @@ function BloodStock() {
   };
 
   const handleUnitsChange = (index, value) => {
+    if (value === "" || Number(value) < 0) {
+      showWarning("Please enter a valid number of blood units.");
+      return;
+    }
+
     const updatedStock = [...bloodStock];
 
     updatedStock[index].units = Number(value);
@@ -88,7 +94,23 @@ function BloodStock() {
       updatedStock[index].status = "Available";
     }
 
+    updatedStock[index].lastUpdated = "Just now";
+
     setBloodStock(updatedStock);
+
+    showSuccess(
+      `${updatedStock[index].bloodGroup} blood stock updated successfully!`
+    );
+
+    if (updatedStock[index].status === "Critical") {
+      showWarning(
+        `${updatedStock[index].bloodGroup} blood stock is critical!`
+      );
+    } else if (updatedStock[index].status === "Low Stock") {
+      showWarning(
+        `${updatedStock[index].bloodGroup} blood stock is running low!`
+      );
+    }
   };
 
   const handlePageChange = (page) => {
@@ -185,9 +207,8 @@ function BloodStock() {
             <nav aria-label="Blood stock pagination">
               <ul className="pagination pagination-sm mb-0">
                 <li
-                  className={`page-item ${
-                    currentPage === 1 ? "disabled" : ""
-                  }`}
+                  className={`page-item ${currentPage === 1 ? "disabled" : ""
+                    }`}
                 >
                   <button
                     className="page-link"
@@ -203,9 +224,8 @@ function BloodStock() {
                   (_, index) => index + 1
                 ).map((page) => (
                   <li
-                    className={`page-item ${
-                      currentPage === page ? "active" : ""
-                    }`}
+                    className={`page-item ${currentPage === page ? "active" : ""
+                      }`}
                     key={page}
                   >
                     <button
@@ -218,9 +238,8 @@ function BloodStock() {
                 ))}
 
                 <li
-                  className={`page-item ${
-                    currentPage === totalPages ? "disabled" : ""
-                  }`}
+                  className={`page-item ${currentPage === totalPages ? "disabled" : ""
+                    }`}
                 >
                   <button
                     className="page-link"
