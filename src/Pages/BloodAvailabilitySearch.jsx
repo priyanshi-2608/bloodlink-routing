@@ -1,5 +1,7 @@
-import { useState } from "react";
+
+import { useState, useRef } from "react";
 import BloodGroupDropdown from "../components/BloodGroupDropdown";
+import BloodBankMap from "../components/BloodBankMap";
 
 const donorData = [
     {
@@ -50,8 +52,11 @@ function BloodAvailabilitySearch() {
         city: "",
         availability: "All",
     });
+
     const [results, setResults] = useState([]);
     const [hasSearched, setHasSearched] = useState(false);
+
+    const resultsRef = useRef(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -87,22 +92,38 @@ function BloodAvailabilitySearch() {
 
         setResults(filteredDonors);
         setHasSearched(true);
+
+        // Automatically scroll to search results
+        setTimeout(() => {
+            resultsRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }, 100);
     };
 
     return (
         <div className="container py-5">
+
+            {/* Page Heading */}
             <div className="text-center mb-4">
                 <i className="bi bi-search text-danger fs-1"></i>
-                <h2 className="fw-bold mt-2">Blood Availability Search</h2>
+
+                <h2 className="fw-bold mt-2">
+                    Blood Availability Search
+                </h2>
+
                 <p className="text-muted">
                     Find available blood donors in your city
                 </p>
             </div>
 
+            {/* Search Form */}
             <div className="card border-0 shadow-sm">
                 <div className="card-body p-4">
                     <form onSubmit={handleSearch}>
                         <div className="row align-items-end">
+
                             <div className="col-md-4 mb-3">
                                 <BloodGroupDropdown
                                     value={search.bloodGroup}
@@ -115,6 +136,7 @@ function BloodAvailabilitySearch() {
                                 <label className="form-label fw-semibold">
                                     City
                                 </label>
+
                                 <input
                                     type="text"
                                     name="city"
@@ -129,6 +151,7 @@ function BloodAvailabilitySearch() {
                                 <label className="form-label fw-semibold">
                                     Availability
                                 </label>
+
                                 <select
                                     name="availability"
                                     className="form-select"
@@ -140,10 +163,14 @@ function BloodAvailabilitySearch() {
                                     <option value="Unavailable">Unavailable</option>
                                 </select>
                             </div>
+
                         </div>
 
                         <div className="d-grid d-md-flex justify-content-md-end">
-                            <button type="submit" className="btn btn-danger px-4">
+                            <button
+                                type="submit"
+                                className="btn btn-danger px-4"
+                            >
                                 <i className="bi bi-search me-2"></i>
                                 Search Blood
                             </button>
@@ -152,61 +179,83 @@ function BloodAvailabilitySearch() {
                 </div>
             </div>
 
+            {/* Blood Bank Location Map */}
+            <BloodBankMap />
+
             {/* Search Results */}
-            {hasSearched && (results.length > 0 ? (
-                <div className="card border-0 shadow-sm mt-4">
-                    <div className="card-body p-4">
-                        <h4 className="fw-bold mb-3">
-                            Available Donors ({results.length})
-                        </h4>
+            {hasSearched && (
+                <div
+                    ref={resultsRef}
+                    style={{ scrollMarginTop: "30px" }}
+                >
+                    {results.length > 0 ? (
+                        <div className="card border-0 shadow-sm mt-4">
+                            <div className="card-body p-4">
 
-                        <div className="table-responsive">
-                            <table className="table table-hover align-middle">
-                                <thead className="table-light">
-                                    <tr>
-                                        <th>Donor Name</th>
-                                        <th>Blood Group</th>
-                                        <th>City</th>
-                                        <th>Availability</th>
-                                        <th>Contact</th>
-                                    </tr>
-                                </thead>
+                                <h4 className="fw-bold mb-3">
+                                    Available Donors ({results.length})
+                                </h4>
 
-                                <tbody>
-                                    {results.map((donor) => (
-                                        <tr key={donor.id}>
-                                            <td className="fw-semibold">{donor.name}</td>
-                                            <td>
-                                                <span className="badge bg-danger">
-                                                    {donor.bloodGroup}
-                                                </span>
-                                            </td>
-                                            <td>{donor.city}</td>
-                                            <td>
-                                                <span
-                                                    className={`badge ${donor.availability === "Available"
-                                                            ? "bg-success"
-                                                            : "bg-secondary"
-                                                        }`}
-                                                >
-                                                    {donor.availability}
-                                                </span>
-                                            </td>
-                                            <td>{donor.contact}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                <div className="table-responsive">
+                                    <table className="table table-hover align-middle">
+
+                                        <thead className="table-light">
+                                            <tr>
+                                                <th>Donor Name</th>
+                                                <th>Blood Group</th>
+                                                <th>City</th>
+                                                <th>Availability</th>
+                                                <th>Contact</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            {results.map((donor) => (
+                                                <tr key={donor.id}>
+
+                                                    <td className="fw-semibold">
+                                                        {donor.name}
+                                                    </td>
+
+                                                    <td>
+                                                        <span className="badge bg-danger">
+                                                            {donor.bloodGroup}
+                                                        </span>
+                                                    </td>
+
+                                                    <td>{donor.city}</td>
+
+                                                    <td>
+                                                        <span
+                                                            className={`badge ${
+                                                                donor.availability === "Available"
+                                                                    ? "bg-success"
+                                                                    : "bg-secondary"
+                                                            }`}
+                                                        >
+                                                            {donor.availability}
+                                                        </span>
+                                                    </td>
+
+                                                    <td>{donor.contact}</td>
+
+                                                </tr>
+                                            ))}
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="text-center mt-4">
+                            <p className="text-muted">
+                                No matching donors found. Try different search criteria.
+                            </p>
+                        </div>
+                    )}
                 </div>
-            ) : (
-                <div className="text-center mt-4">
-                    <p className="text-muted">
-                        No matching donors found. Try different search criteria.
-                    </p>
-                </div>
-            ))}
+            )}
 
         </div>
     );
