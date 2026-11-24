@@ -92,8 +92,6 @@ function BloodAvailabilitySearch() {
 
         setResults(filteredDonors);
         setHasSearched(true);
-
-        // Automatically scroll to search results
         setTimeout(() => {
             resultsRef.current?.scrollIntoView({
                 behavior: "smooth",
@@ -104,21 +102,16 @@ function BloodAvailabilitySearch() {
 
     return (
         <div className="container py-5">
-
-            {/* Page Heading */}
             <div className="text-center mb-4">
                 <i className="bi bi-search text-danger fs-1"></i>
-
                 <h2 className="fw-bold mt-2">
                     Blood Availability Search
                 </h2>
-
                 <p className="text-muted">
                     Find available blood donors in your city
                 </p>
             </div>
 
-            {/* Search Form */}
             <div className="card border-0 shadow-sm">
                 <div className="card-body p-4">
                     <form onSubmit={handleSearch}>
@@ -178,11 +171,7 @@ function BloodAvailabilitySearch() {
                     </form>
                 </div>
             </div>
-
-            {/* Blood Bank Location Map */}
             <BloodBankMap />
-
-            {/* Search Results */}
             {hasSearched && (
                 <div
                     ref={resultsRef}

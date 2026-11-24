@@ -10,8 +10,6 @@ import BloodStock from "../components/admin/BloodStock";
 function AdminDashboard() {
   return (
     <>
-      {/* <Navbar /> */}
-
       <div className="container-fluid py-4">
         <div className="row g-4">
           <div className="col-12 col-lg-3 col-xl-2">

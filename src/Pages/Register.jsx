@@ -27,8 +27,6 @@ function Register() {
   } = useForm(initialValues);
 
   const [status, setStatus] = useState({});
-
-  // Password show/hide
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -54,23 +52,18 @@ function Register() {
     const newStatus = {};
     let isValid = true;
 
-    // Full Name
     if (fullName.trim().length < 2) {
       newStatus.fullName = "is-invalid";
       isValid = false;
     } else {
       newStatus.fullName = "is-valid";
     }
-
-    // Email
     if (!isValidEmail(email.trim())) {
       newStatus.email = "is-invalid";
       isValid = false;
     } else {
       newStatus.email = "is-valid";
     }
-
-    // Phone
     const phonePattern = /^[0-9]{10}$/;
 
     if (!phonePattern.test(phone.trim())) {
@@ -79,32 +72,24 @@ function Register() {
     } else {
       newStatus.phone = "is-valid";
     }
-
-    // Blood Group
     if (bloodGroup === "") {
       newStatus.bloodGroup = "is-invalid";
       isValid = false;
     } else {
       newStatus.bloodGroup = "is-valid";
     }
-
-    // City
     if (city.trim().length < 2) {
       newStatus.city = "is-invalid";
       isValid = false;
     } else {
       newStatus.city = "is-valid";
     }
-
-    // Password
     if (password.length < 6) {
       newStatus.password = "is-invalid";
       isValid = false;
     } else {
       newStatus.password = "is-valid";
     }
-
-    // Confirm Password
     if (
       confirmPassword === "" ||
       confirmPassword !== password
@@ -114,8 +99,6 @@ function Register() {
     } else {
       newStatus.confirmPassword = "is-valid";
     }
-
-    // Terms
     if (!terms) {
       newStatus.terms = "is-invalid";
       isValid = false;
@@ -125,13 +108,10 @@ function Register() {
 
     setStatus(newStatus);
 
-    // Show error notification
     if (!isValid) {
       showError("Please check the highlighted fields.");
       return;
     }
-
-    // Show success notification
     showSuccess("Registration details are valid!");
 
     resetForm();
@@ -147,8 +127,6 @@ function Register() {
           <div className="col-12 col-sm-11 col-md-9 col-lg-7">
             <div className="card login-card shadow-sm">
               <div className="card-body">
-
-                {/* BloodLink Branding */}
                 <div className="text-center brand-section">
                   <div className="blood-icon">
                     <svg
@@ -167,18 +145,14 @@ function Register() {
                   </p>
                 </div>
 
-                {/* Register Heading */}
                 <div className="login-heading text-center">
                   <h2>Create Your Account</h2>
                   <p>Join BloodLink and help save lives</p>
                 </div>
 
-                {/* Registration Form */}
                 <form onSubmit={handleSubmit} noValidate>
 
                   <div className="row">
-
-                    {/* Full Name */}
                     <div className="col-md-6">
                       <FormInput
                         label="Full Name"
@@ -199,8 +173,6 @@ function Register() {
                         </div>
                       )}
                     </div>
-
-                    {/* Email */}
                     <div className="col-md-6">
                       <FormInput
                         label="Email Address"
@@ -220,8 +192,6 @@ function Register() {
                         </div>
                       )}
                     </div>
-
-                    {/* Phone */}
                     <div className="col-md-6">
                       <FormInput
                         label="Phone Number"
@@ -282,8 +252,6 @@ function Register() {
                         </div>
                       )}
                     </div>
-
-                    {/* Password */}
                     <div className="col-md-6 mb-3">
                       <label
                         htmlFor="registerPassword"
@@ -336,8 +304,6 @@ function Register() {
                         </div>
                       )}
                     </div>
-
-                    {/* Confirm Password */}
                     <div className="col-md-6 mb-3">
                       <label
                         htmlFor="confirmPassword"
@@ -394,8 +360,6 @@ function Register() {
                     </div>
 
                   </div>
-
-                  {/* Terms */}
                   <div className="form-check terms-check mb-4">
                     <input
                       className={`form-check-input ${status.terms || ""
@@ -426,8 +390,6 @@ function Register() {
                       </div>
                     )}
                   </div>
-
-                  {/* Create Account */}
                   <div className="d-grid">
                     <button
                       type="submit"
@@ -438,8 +400,6 @@ function Register() {
                   </div>
 
                 </form>
-
-                {/* Login Link */}
                 <div className="register-section text-center">
                   <span>Already have an account? </span>
 

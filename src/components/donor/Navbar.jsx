@@ -1,6 +1,8 @@
+import ThemeToggle from "../ThemeToggle";
+
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-white border-bottom">
+    <nav className="navbar navbar-expand-lg border-bottom bloodlink-navbar">
       <div className="container">
         <a className="navbar-brand fw-bold text-danger" href="#">
           <i className="bi bi-droplet-fill blood-drop"></i>
@@ -33,7 +35,7 @@ function Navbar() {
               </a>
             </li>
 
-             <li className="nav-item">
+            <li className="nav-item">
               <a className="nav-link" href="/donation-request">
                 Donation Request
               </a>
@@ -56,6 +58,9 @@ function Navbar() {
               <button className="btn btn-outline-danger btn-sm px-3">
                 Logout
               </button>
+            </li>
+            <li className="nav-item theme-toggle-item">
+              <ThemeToggle />
             </li>
           </ul>
         </div>

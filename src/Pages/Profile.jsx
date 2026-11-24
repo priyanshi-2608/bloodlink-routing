@@ -24,7 +24,6 @@ function Profile() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Check required fields
     if (
       !profile.fullName ||
       !profile.email ||
@@ -36,7 +35,6 @@ function Profile() {
       return;
     }
 
-    // Check phone number
     if (!/^[0-9]{10}$/.test(profile.phone)) {
       showError("Please enter a valid 10-digit phone number.");
       return;
@@ -54,7 +52,6 @@ function Profile() {
           <div className="card shadow-sm border-0">
             <div className="card-body p-4">
 
-              {/* Header */}
               <div className="text-center mb-4">
                 <div
                   className="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center mx-auto mb-3"
@@ -74,10 +71,8 @@ function Profile() {
                 </p>
               </div>
 
-              {/* Form */}
               <form onSubmit={handleSubmit} noValidate>
 
-                {/* Full Name */}
                 <FormInput
                   label="Full Name"
                   name="fullName"
@@ -89,7 +84,6 @@ function Profile() {
                   required
                 />
 
-                {/* Email */}
                 <FormInput
                   label="Email"
                   name="email"
@@ -101,7 +95,6 @@ function Profile() {
                   required
                 />
 
-                {/* Phone */}
                 <FormInput
                   label="Phone"
                   name="phone"
@@ -116,16 +109,11 @@ function Profile() {
                 />
 
                 <div className="row">
-
-                  {/* Blood Group */}
-                  {/* Keep normal select until Task 3 */}
                   <BloodGroupDropdown
                     value={profile.bloodGroup}
                     onChange={handleChange}
                     required
                   />
-
-                  {/* City */}
                   <div className="col-md-6">
                     <FormInput
                       label="City"
@@ -138,10 +126,7 @@ function Profile() {
                       required
                     />
                   </div>
-
                 </div>
-
-                {/* Submit */}
                 <div className="d-grid">
                   <button
                     type="submit"

@@ -1,6 +1,4 @@
-
 import useForm from "../hooks/useForm";
-
 import { showSuccess, showError } from "../components/Notification";
 import FormInput from "../components/FormInput";
 import BloodGroupDropdown from "../components/BloodGroupDropdown";
@@ -25,8 +23,6 @@ function DonationRequest() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        // Validate all required fields
         if (
             !request.patientName.trim() ||
             !request.bloodGroup ||
@@ -39,20 +35,14 @@ function DonationRequest() {
             showError("Please fill in all required fields.");
             return;
         }
-
-        // Validate blood units
         const units = Number(request.unitsRequired);
 
         if (!Number.isInteger(units) || units < 1) {
             showError("Units required must be a whole number of at least 1.");
             return;
         }
-
-        // Submit request
         console.log("Donation Request:", request);
-
         showSuccess("Donation request submitted successfully!");
-
         resetForm();
     };
 
@@ -62,8 +52,6 @@ function DonationRequest() {
                 <div className="col-lg-8">
                     <div className="card border-0 shadow-sm">
                         <div className="card-body p-4 p-md-5">
-
-                            {/* Header */}
                             <div className="text-center mb-4">
                                 <div
                                     className="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center mx-auto mb-3"
@@ -71,23 +59,19 @@ function DonationRequest() {
                                         width: "70px",
                                         height: "70px",
                                         fontSize: "28px",
-                                    }}
-                                >
+                                    }}>
                                     <i className="bi bi-droplet-fill"></i>
                                 </div>
 
                                 <h2 className="fw-bold mb-2">
                                     Donation Request
                                 </h2>
-
                                 <p className="text-muted mb-0">
                                     Submit a request for blood donation
                                 </p>
                             </div>
 
                             <form onSubmit={handleSubmit} noValidate>
-
-                                {/* Patient Name + Blood Group */}
                                 <div className="row">
                                     <div className="col-md-6">
                                         <FormInput
@@ -96,18 +80,13 @@ function DonationRequest() {
                                             value={request.patientName}
                                             onChange={handleChange}
                                             placeholder="Enter patient name"
-                                            required
-                                        />
+                                            required/>
                                     </div>
-
                                     <BloodGroupDropdown
                                         value={request.bloodGroup}
                                         onChange={handleChange}
-                                        required
-                                    />
+                                        required/>
                                 </div>
-
-                                {/* Units + Required Date */}
                                 <div className="row">
                                     <div className="col-md-6">
                                         <FormInput
@@ -119,8 +98,7 @@ function DonationRequest() {
                                             placeholder="Enter required units"
                                             min="1"
                                             step="1"
-                                            required
-                                        />
+                                            required/>
                                     </div>
 
                                     <div className="col-md-6">
@@ -134,18 +112,13 @@ function DonationRequest() {
                                         />
                                     </div>
                                 </div>
-
-                                {/* Hospital */}
                                 <FormInput
                                     label="Hospital / Medical Center"
                                     name="hospital"
                                     value={request.hospital}
                                     onChange={handleChange}
                                     placeholder="Enter hospital name"
-                                    required
-                                />
-
-                                {/* City + Contact Number */}
+                                    required/>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <FormInput
@@ -154,8 +127,7 @@ function DonationRequest() {
                                             value={request.city}
                                             onChange={handleChange}
                                             placeholder="Enter city"
-                                            required
-                                        />
+                                            required/>
                                     </div>
 
                                     <div className="col-md-6">
@@ -166,17 +138,13 @@ function DonationRequest() {
                                             value={request.contactNumber}
                                             onChange={handleChange}
                                             placeholder="Enter contact number"
-                                            required
-                                        />
+                                            required/>
                                     </div>
                                 </div>
-
-                                {/* Reason */}
                                 <div className="mb-4">
                                     <label
                                         htmlFor="reason"
-                                        className="form-label fw-semibold"
-                                    >
+                                        className="form-label fw-semibold">
                                         Reason / Additional Information
                                     </label>
 
@@ -190,13 +158,10 @@ function DonationRequest() {
                                         placeholder="Enter reason or additional information"
                                     ></textarea>
                                 </div>
-
-                                {/* Submit */}
                                 <div className="d-grid">
                                     <button
                                         type="submit"
-                                        className="btn btn-danger"
-                                    >
+                                        className="btn btn-danger">
                                         <i className="bi bi-send-fill me-2"></i>
                                         Submit Donation Request
                                     </button>

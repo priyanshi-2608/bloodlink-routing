@@ -39,29 +39,22 @@ function Login() {
 
     let isValid = true;
 
-    // Email validation
     if (emailValue === "" || !isValidEmail(emailValue)) {
       setEmailStatus("is-invalid");
       isValid = false;
     } else {
       setEmailStatus("is-valid");
     }
-
-    // Password validation
     if (passwordValue === "" || passwordValue.length < 6) {
       setPasswordStatus("is-invalid");
       isValid = false;
     } else {
       setPasswordStatus("is-valid");
     }
-
-    // Show error notification
     if (!isValid) {
       showError("Please check your email and password.");
       return;
     }
-
-    // Show success notification
     showSuccess("Login details are valid!");
 
     resetForm();
@@ -78,7 +71,6 @@ function Login() {
             <div className="card login-card shadow-sm">
               <div className="card-body">
 
-                {/* BloodLink Branding */}
                 <div className="text-center brand-section">
                   <div className="blood-icon">
                     <svg
@@ -96,17 +88,12 @@ function Login() {
                     Share Life, Give Blood
                   </p>
                 </div>
-
-                {/* Login Heading */}
                 <div className="login-heading text-center">
                   <h2>Welcome Back</h2>
                   <p>Login to your BloodLink account</p>
                 </div>
 
-                {/* Login Form */}
                 <form onSubmit={handleSubmit} noValidate>
-
-                  {/* Email */}
                   <FormInput
                     label="Email Address"
                     name="email"
@@ -127,8 +114,6 @@ function Login() {
                       Please enter a valid email address.
                     </div>
                   )}
-
-                  {/* Password */}
                   <div className="mb-2">
                     <label
                       htmlFor="password"
@@ -180,7 +165,6 @@ function Login() {
                     )}
                   </div>
 
-                  {/* Forgot Password */}
                   <div className="d-flex justify-content-end mb-4">
                     <button
                       type="button"
@@ -191,7 +175,6 @@ function Login() {
                     </button>
                   </div>
 
-                  {/* Login Button */}
                   <div className="d-grid">
                     <button
                       type="submit"
@@ -202,7 +185,6 @@ function Login() {
                   </div>
                 </form>
 
-                {/* Register */}
                 <div className="register-section text-center">
                   <span>Don't have an account? </span>
 

@@ -22,8 +22,8 @@ const benefits = [
 function WhyDonate() {
   return (
     <section className="mb-4">
-      <div className="mb-4">
-        <h4 className="fw-bold mb-1">
+      <div className="mb-4 p-3">
+        <h4 className="fw-bold mb-2">
           Why Donate Blood?
         </h4>
 

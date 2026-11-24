@@ -1,4 +1,109 @@
-/* BloodLink Global Color Theme */
+/* GLOBAL DARK MODE STYLING */
+:root[data-theme="dark"] body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Headings and Text */
+:root[data-theme="dark"] h1,
+:root[data-theme="dark"] h2,
+:root[data-theme="dark"] h3,
+:root[data-theme="dark"] h4,
+:root[data-theme="dark"] h5,
+:root[data-theme="dark"] h6,
+:root[data-theme="dark"] p,
+:root[data-theme="dark"] label,
+:root[data-theme="dark"] span {
+    color: inherit;
+}
+
+/* Cards and Containers */
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .login-card,
+:root[data-theme="dark"] .modal-content,
+:root[data-theme="dark"] .dropdown-menu {
+    background-color: var(--white);
+    color: var(--text-color);
+    border-color: var(--card-border);
+}
+
+/* Forms */
+:root[data-theme="dark"] .form-control,
+:root[data-theme="dark"] .form-select {
+    background-color: #263442;
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+:root[data-theme="dark"] .form-control::placeholder {
+    color: var(--placeholder-color);
+}
+
+:root[data-theme="dark"] .form-control:focus,
+:root[data-theme="dark"] .form-select:focus {
+    background-color: #263442;
+    color: var(--text-color);
+}
+
+/* Tables */
+:root[data-theme="dark"] .table {
+    --bs-table-color: var(--text-color);
+    --bs-table-bg: var(--white);
+    --bs-table-border-color: var(--border-color);
+    --bs-table-striped-bg: #263442;
+    --bs-table-striped-color: var(--text-color);
+    --bs-table-hover-bg: #304050;
+    --bs-table-hover-color: var(--text-color);
+}
+
+/* Dropdown Items */
+:root[data-theme="dark"] .dropdown-item {
+    color: var(--text-color);
+}
+
+:root[data-theme="dark"] .dropdown-item:hover {
+    background-color: #304050;
+    color: var(--text-color);
+}
+
+/* Borders */
+:root[data-theme="dark"] hr {
+    border-color: var(--border-color);
+}
+
+/* Muted Text */
+:root[data-theme="dark"] .text-muted {
+    color: var(--muted-color) !important;
+}
+
+/* BloodLink Dark Theme */
+:root[data-theme="dark"] {
+    --text-color: #f1f3f5;
+    --muted-color: #adb5bd;
+
+    --background-color: #121820;
+    --white: #1e2935;
+
+    --border-color: #3a4653;
+    --placeholder-color: #8b98a5;
+
+    --light-red: #3a2026;
+    --soft-red: #302027;
+    --welcome-border: #59343b;
+    --icon-background: #4a2930;
+    --card-border: #35414d;
+
+    --card-shadow: rgba(0, 0, 0, 0.2);
+    --hover-shadow: rgba(0, 0, 0, 0.3);
+
+    --error-text: #f5c2c7;
+    --error-background: #44252a;
+    --error-border: #842029;
+
+    --success-text: #a3cfbb;
+    --success-background: #193b2d;
+    --success-border: #286747;
+}
 
 :root {
     --primary-color: #dc3545;
@@ -17,7 +122,6 @@
     --success-color: #198754;
     --danger-color: #dc3545;
 
-    /* Form Validation Colors */
     --error-text: #842029;
     --error-background: #f8d7da;
     --error-border: #f5c2c7;
@@ -26,7 +130,6 @@
     --success-background: #d1e7dd;
     --success-border: #badbcc;
 
-    /* Dashboard Theme Colors */
     --light-red: #fff0f0;
     --soft-red: #fff5f5;
     --welcome-border: #f1d5d5;
@@ -35,6 +138,72 @@
     --card-shadow: rgba(0, 0, 0, 0.05);
     --hover-shadow: rgba(0, 0, 0, 0.08);
 }
+
+/* BloodLink Global Color Theme */
+:root {
+    --primary-color: #dc3545;
+    --primary-hover: #b02a37;
+    --primary-light: rgba(220, 53, 69, 0.15);
+
+    --text-color: #212529;
+    --muted-color: #6c757d;
+
+    --background-color: #f8f9fa;
+    --white: #ffffff;
+
+    --border-color: #dee2e6;
+    --placeholder-color: #adb5bd;
+
+    --success-color: #198754;
+    --danger-color: #dc3545;
+
+    --error-text: #842029;
+    --error-background: #f8d7da;
+    --error-border: #f5c2c7;
+
+    --success-text: #0f5132;
+    --success-background: #d1e7dd;
+    --success-border: #badbcc;
+
+    --light-red: #fff0f0;
+    --soft-red: #fff5f5;
+    --welcome-border: #f1d5d5;
+    --icon-background: #ffe3e3;
+    --card-border: #e9ecef;
+    --card-shadow: rgba(0, 0, 0, 0.05);
+    --hover-shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* BloodLink Dark Theme */
+
+:root[data-theme="dark"] {
+    --text-color: #f1f3f5;
+    --muted-color: #adb5bd;
+
+    --background-color: #121820;
+    --white: #1e2935;
+
+    --border-color: #3a4653;
+    --placeholder-color: #8b98a5;
+
+    --light-red: #3a2026;
+    --soft-red: #302027;
+    --welcome-border: #59343b;
+    --icon-background: #4a2930;
+    --card-border: #35414d;
+
+    --card-shadow: rgba(0, 0, 0, 0.2);
+    --hover-shadow: rgba(0, 0, 0, 0.3);
+
+    --error-text: #f5c2c7;
+    --error-background: #44252a;
+    --error-border: #842029;
+
+    --success-text: #a3cfbb;
+    --success-background: #193b2d;
+    --success-border: #286747;
+}
+
 
 /* Global */
 
@@ -369,3 +538,89 @@ body {
     transform: translateY(-2px);
 }
 
+/* Theme Toggle Inside Navbar */
+.theme-toggle {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: static;
+    margin: 0;
+    padding: 0;
+
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+
+    background: var(--white);
+    color: var(--text-color);
+
+    font-size: 18px;
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px var(--card-shadow);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg) scale(1.08);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* BloodLink Navbar */
+.bloodlink-navbar {
+    background-color: var(--white);
+    color: var(--text-color);
+    border-color: var(--border-color) !important;
+}
+
+.bloodlink-navbar .navbar-brand {
+    color: var(--primary-color) !important;
+}
+
+.bloodlink-navbar .nav-link {
+    color: var(--text-color);
+    transition: color 0.2s ease;
+}
+
+.bloodlink-navbar .nav-link:hover,
+.bloodlink-navbar .nav-link.active {
+    color: var(--primary-color);
+}
+
+/* Navbar Toggler */
+.bloodlink-navbar .navbar-toggler {
+    border-color: var(--border-color);
+}
+
+.bloodlink-navbar .navbar-toggler-icon {
+    filter: none;
+}
+
+:root[data-theme="dark"] .bloodlink-navbar .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* Theme Toggle Navbar Spacing */
+/* Desktop */
+@media (min-width: 992px) {
+    .theme-toggle-item {
+        margin-left: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Mobile and Tablet */
+@media (max-width: 991.98px) {
+    .theme-toggle-item {
+        margin-top: 12px;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}

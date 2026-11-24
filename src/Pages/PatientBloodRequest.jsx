@@ -1,4 +1,3 @@
-
 import useForm from "../hooks/useForm";
 
 import { showSuccess, showError } from "../components/Notification";
@@ -25,8 +24,6 @@ function PatientBloodRequest() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Check all required fields
         if (
             !request.patientName.trim() ||
             !request.bloodGroup ||
@@ -39,8 +36,6 @@ function PatientBloodRequest() {
             showError("Please fill in all required fields.");
             return;
         }
-
-        // Check minimum blood units
         const units = Number(request.unitsRequired);
 
         if (!Number.isInteger(units) || units < 1) {
@@ -49,9 +44,7 @@ function PatientBloodRequest() {
         }
 
         console.log("Blood Request:", request);
-
         showSuccess("Blood request submitted successfully!");
-
         resetForm();
     };
 
@@ -62,22 +55,17 @@ function PatientBloodRequest() {
                     <div className="card shadow-sm border-0">
                         <div className="card-body p-4 p-md-5">
 
-                            {/* Header */}
                             <div className="text-center mb-4">
                                 <i className="bi bi-droplet-half text-danger fs-1"></i>
-
                                 <h2 className="fw-bold mt-2">
                                     Patient Blood Request
                                 </h2>
-
                                 <p className="text-muted mb-0">
                                     Submit a request for the blood you need
                                 </p>
                             </div>
 
                             <form onSubmit={handleSubmit} noValidate>
-
-                                {/* Patient Name */}
                                 <FormInput
                                     label="Patient Name"
                                     name="patientName"
@@ -86,17 +74,12 @@ function PatientBloodRequest() {
                                     placeholder="Enter patient name"
                                     required
                                 />
-
                                 <div className="row">
-
-                                    {/* Blood Group */}
                                     <BloodGroupDropdown
                                         value={request.bloodGroup}
                                         onChange={handleChange}
                                         required
                                     />
-
-                                    {/* Units Required */}
                                     <div className="col-md-6">
                                         <FormInput
                                             label="Units Required"
@@ -113,8 +96,6 @@ function PatientBloodRequest() {
                                 </div>
 
                                 <div className="row">
-
-                                    {/* Required Date */}
                                     <div className="col-md-6">
                                         <FormInput
                                             label="Required Date"
@@ -125,8 +106,6 @@ function PatientBloodRequest() {
                                             required
                                         />
                                     </div>
-
-                                    {/* Contact Number */}
                                     <div className="col-md-6">
                                         <FormInput
                                             label="Contact Number"
@@ -139,8 +118,6 @@ function PatientBloodRequest() {
                                         />
                                     </div>
                                 </div>
-
-                                {/* Hospital */}
                                 <FormInput
                                     label="Hospital / Medical Center"
                                     name="hospital"
@@ -149,8 +126,6 @@ function PatientBloodRequest() {
                                     placeholder="Enter hospital name"
                                     required
                                 />
-
-                                {/* City */}
                                 <FormInput
                                     label="City"
                                     name="city"
@@ -159,8 +134,6 @@ function PatientBloodRequest() {
                                     placeholder="Enter city"
                                     required
                                 />
-
-                                {/* Reason */}
                                 <div className="mb-4">
                                     <label
                                         htmlFor="reason"
@@ -179,8 +152,6 @@ function PatientBloodRequest() {
                                         placeholder="Enter reason or additional information"
                                     ></textarea>
                                 </div>
-
-                                {/* Submit */}
                                 <div className="d-grid">
                                     <button
                                         type="submit"
