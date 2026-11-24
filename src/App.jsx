@@ -22,11 +22,13 @@ import BloodAvailabilitySearch from "./Pages/BloodAvailabilitySearch.jsx";
 import DonorBloodScheduling from "./Pages/DonorBloodScheduling.jsx";
 
 import Footer from "./components/Footer.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function App() {
   return (
     <BrowserRouter>
     <ToastContainer position="top-right" autoClose={3000} />
+    <ScrollToTop />
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
 
