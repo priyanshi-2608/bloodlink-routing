@@ -1,19 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import useForm from "../hooks/useForm";
 import FormInput from "../components/FormInput";
 import { showSuccess, showError } from "../components/Notification";
 
 function Login() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const {
+    formData,
+    handleChange,
+    resetForm,
+  } = useForm(initialValues);
 
   const [emailStatus, setEmailStatus] = useState("");
   const [passwordStatus, setPasswordStatus] = useState("");
-
-  // Password show/hide
   const [showPassword, setShowPassword] = useState(false);
 
   const isValidEmail = (emailValue) => {
@@ -24,8 +31,8 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const emailValue = email.trim();
-    const passwordValue = password.trim();
+    const emailValue = formData.email.trim();
+    const passwordValue = formData.password.trim();
 
     setEmailStatus("");
     setPasswordStatus("");
@@ -56,6 +63,11 @@ function Login() {
 
     // Show success notification
     showSuccess("Login details are valid!");
+
+    resetForm();
+    setEmailStatus("");
+    setPasswordStatus("");
+    setShowPassword(false);
   };
 
   return (
@@ -99,9 +111,9 @@ function Login() {
                     label="Email Address"
                     name="email"
                     type="email"
-                    value={email}
+                    value={formData.email}
                     onChange={(event) => {
-                      setEmail(event.target.value);
+                      handleChange(event);
                       setEmailStatus("");
                     }}
                     placeholder="Enter your email"
@@ -130,11 +142,12 @@ function Login() {
                         type={showPassword ? "text" : "password"}
                         className={`form-control password-input ${passwordStatus}`}
                         id="password"
+                        name="password"
                         placeholder="Enter your password"
                         autoComplete="current-password"
-                        value={password}
+                        value={formData.password}
                         onChange={(event) => {
-                          setPassword(event.target.value);
+                          handleChange(event);
                           setPasswordStatus("");
                         }}
                       />
@@ -153,8 +166,8 @@ function Login() {
                       >
                         <i
                           className={`bi ${showPassword
-                              ? "bi-eye-slash"
-                              : "bi-eye"
+                            ? "bi-eye-slash"
+                            : "bi-eye"
                             }`}
                         ></i>
                       </button>

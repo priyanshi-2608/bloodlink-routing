@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import useForm from "../hooks/useForm";
 import FormInput from "../components/FormInput";
 import { showSuccess, showError } from "../components/Notification";
 import BloodGroupDropdown from "../components/BloodGroupDropdown";
@@ -8,7 +9,7 @@ import BloodGroupDropdown from "../components/BloodGroupDropdown";
 function Register() {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
+  const initialValues = {
     fullName: "",
     email: "",
     phone: "",
@@ -17,7 +18,13 @@ function Register() {
     password: "",
     confirmPassword: "",
     terms: false,
-  });
+  };
+
+  const {
+    formData,
+    handleChange,
+    resetForm,
+  } = useForm(initialValues);
 
   const [status, setStatus] = useState({});
 
@@ -28,15 +35,6 @@ function Register() {
   const isValidEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
-  };
-
-  const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
-
-    setFormData((previous) => ({
-      ...previous,
-      [name]: type === "checkbox" ? checked : value,
-    }));
   };
 
   const handleSubmit = (event) => {
@@ -135,6 +133,11 @@ function Register() {
 
     // Show success notification
     showSuccess("Registration details are valid!");
+
+    resetForm();
+    setStatus({});
+    setShowPassword(false);
+    setShowConfirmPassword(false);
   };
 
   return (
