@@ -18,6 +18,7 @@ import AdminDashboard from "./Pages/AdminDashboard.jsx";
 import Profile from "./Pages/Profile.jsx";
 import DonationRequest from "./Pages/DonationRequest.jsx";
 import PatientBloodRequest from "./Pages/PatientBloodRequest.jsx";
+import PatientRequestHistory from "./Pages/PatientRequestHistory.jsx";
 import BloodAvailabilitySearch from "./Pages/BloodAvailabilitySearch.jsx";
 import DonorBloodScheduling from "./Pages/DonorBloodScheduling.jsx";
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/donation-request" element={<DonationRequest />}/>
         <Route path="/patient-blood-request" element={<PatientBloodRequest/>}/>
+        <Route path="/patient-request-history" element={<PatientRequestHistory/>}/>
         <Route path="/blood-availability" element={<BloodAvailabilitySearch />}/>
         <Route path="/donor-blood-scheduling" element={<DonorBloodScheduling/>}/>
       </Routes>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ReusableTable from "../../components/ReusableTable";
 
 const requests = [
@@ -84,9 +85,10 @@ function RecentRequests() {
                         </p>
                     </div>
 
-                    <button className="btn btn-outline-danger btn-sm">
+                    <Link to="/patient-request-history"
+                     className="btn btn-outline-danger btn-sm">
                         View All
-                    </button>
+                    </Link>
                 </div>
 
                 <ReusableTable

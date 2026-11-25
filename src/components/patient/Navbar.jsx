@@ -28,7 +28,7 @@ function Navbar() {
               </a>
             </li>
 
-          <li className="nav-item">
+            <li className="nav-item">
               <a className="nav-link" href="/blood-availability">
                 Find Blood
               </a>
@@ -37,6 +37,12 @@ function Navbar() {
             <li className="nav-item">
               <a className="nav-link" href="/patient-blood-request">
                 Blood Requests
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a className="nav-link" href="/patient-request-history">
+                Request History
               </a>
             </li>
 
