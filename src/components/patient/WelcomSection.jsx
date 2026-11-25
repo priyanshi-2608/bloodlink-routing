@@ -1,8 +1,11 @@
+
 function WelcomeSection() {
     return (
         <section className="welcome-section">
             <div>
-                <p className="text-danger fw-semibold mb-2">PATIENT DASHBOARD</p>
+                <p className="text-danger fw-semibold mb-2">
+                    PATIENT DASHBOARD
+                </p>
 
                 <h1 className="fw-bold mb-2">
                     Welcome back, Priyanshi!
@@ -13,8 +16,11 @@ function WelcomeSection() {
                 </p>
             </div>
 
-            <div className="welcome-icon">
-                <i className="bi bi-droplet-fill"></i>
+            <div className="welcome-image">
+                <img
+                    src="/images/image2.webp"
+                    alt="Doctor providing care to a patient"
+                />
             </div>
         </section>
     );

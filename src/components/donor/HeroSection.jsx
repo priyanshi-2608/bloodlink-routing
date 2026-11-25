@@ -1,3 +1,4 @@
+
 function HeroSection() {
   return (
     <section className="hero-section">
@@ -28,8 +29,11 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className="hero-icon">
-        <i className="bi bi-droplet-fill"></i>
+      <div className="hero-image">
+        <img
+          src="/images/image1.webp"
+          alt="Blood donation"
+        />
       </div>
     </section>
   );

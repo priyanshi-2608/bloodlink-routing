@@ -54,19 +54,19 @@
     font-size: clamp(1.7rem, 4vw, 2.4rem);
   }
 
-  .welcome-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: var(--icon-background);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  /* Welcome Image */
+  .welcome-image {
+    width: 190px;
+    height: 130px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 14px;
   }
 
-  .welcome-icon i {
-    font-size: 2.2rem;
-    color: var(--primary-color);
+  .welcome-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   /* Dashboard Statastics */
@@ -203,13 +203,9 @@
       width: 100%;
     }
 
-    .welcome-icon {
-      width: 60px;
-      height: 60px;
-    }
-
-    .welcome-icon i {
-      font-size: 1.7rem;
+    .welcome-image {
+      width: 120px;
+      height: 90px;
     }
 
     .welcome-section h1 {
