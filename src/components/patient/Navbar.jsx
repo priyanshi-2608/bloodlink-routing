@@ -1,3 +1,5 @@
+import ThemeToggle from "../ThemeToggle";
+
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-white border-bottom sticky-top">
@@ -48,6 +50,9 @@ function Navbar() {
               <button className="btn btn-outline-danger btn-sm px-3">
                 Logout
               </button>
+            </li>
+            <li className="nav-item theme-toggle-item">
+              <ThemeToggle />
             </li>
           </ul>
         </div>

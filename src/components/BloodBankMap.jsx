@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useTheme } from "../context/ThemeContext";
 
 import {
     APIProvider,
@@ -34,6 +35,7 @@ const bloodBanks = [
 
 function BloodBankMap() {
     const [selectedBank, setSelectedBank] = useState(null);
+    const { theme } = useTheme();
 
     return (
         <div className="card border-0 shadow-sm mt-4">
@@ -63,6 +65,9 @@ function BloodBankMap() {
                             defaultCenter={{ lat: 22.5, lng: 72.8 }}
                             defaultZoom={7}
                             mapId="DEMO_MAP_ID"
+                            colorScheme={
+                                theme === "dark" ? "DARK" : "LIGHT"
+                            }
                             style={{
                                 width: "100%",
                                 height: "100%",
@@ -97,7 +102,14 @@ function BloodBankMap() {
                                     position={selectedBank.position}
                                     onCloseClick={() => setSelectedBank(null)}
                                 >
-                                    <div style={{ minWidth: "170px" }}>
+                                    <div
+                                        style={{
+                                            minWidth: "170px",
+                                            color: "#212529",
+                                            backgroundColor: "#ffffff",
+                                            padding: "4px",
+                                        }}
+                                    >
                                         <h6 className="fw-bold mb-2">
                                             {selectedBank.name}
                                         </h6>
